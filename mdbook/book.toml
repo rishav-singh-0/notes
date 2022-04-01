@@ -1,0 +1,6 @@
+[book]
+authors = ["Rishav Singh", "Kashyap Joshi"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Industrial Surveillance Robot"
