@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microcontroller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html" class="active"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html" class="active"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,7 +148,7 @@ and Core2 address 1T byte of memory in a flat memory model. Windows Vista
 or Windows 64 is needed to operate the Pentium 4 or Core2 in 64-bit mode
 using the flat mode memory to access the entire 1T byte of memory.</p>
 <h1 id="8086"><a class="header" href="#8086">8086</a></h1>
-<p><a href="./images/8086_architecture-diagram.jpg">architecture_diagram</a></p>
+<p><img src="./images/8086_architecture-diagram.jpg" alt="architecture_diagram" /></p>
 <ul>
 <li>8086 does not have a RAM or ROM inside it. However, it has internal registers for storing intermediate and final results and interfaces with memory located outside it through the System Bus.</li>
 <li>It is a 16-bit Integer processor in a 40 pin, Dual Inline Packaged IC.</li>
@@ -238,7 +238,6 @@ then CS x 10H = 43210H + offset =  44210H
 <h3 id="arithmetic-logic-unit-16-bit"><a class="header" href="#arithmetic-logic-unit-16-bit">Arithmetic Logic Unit (16 bit)</a></h3>
 <p>Performs 8 and 16 bit arithmetic and logic operations. </p>
 <h3 id="special-purpose-registers-16-bit"><a class="header" href="#special-purpose-registers-16-bit">Special purpose registers (16-bit)</a></h3>
-<p><img src="./images/memory-segment.png" alt="memory-segment" /> </p>
 <h4 id="--stack-pointersp"><a class="header" href="#--stack-pointersp">- Stack Pointer(SP)</a></h4>
 <p>Points to Stack top. Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.</p>
 <h4 id="--base-pointerbp"><a class="header" href="#--base-pointerbp">- Base Pointer(BP)</a></h4>
@@ -251,6 +250,7 @@ then CS x 10H = 43210H + offset =  44210H
 <p>The EU fetches an opcode from the queue into the instruction register. The instruction decoder decodes it and sends the information to the control circuit for execution. </p>
 <h3 id="flagstatus-register-16-bits"><a class="header" href="#flagstatus-register-16-bits">Flag/Status register (16 bits):</a></h3>
 <p>It has 9 flags that help change or recognize the state of the microprocessor. </p>
+<p><img src="./images/8086_flags.png" alt="flags" /> </p>
 <h3 id="6-status-flags"><a class="header" href="#6-status-flags">6 Status flags:</a></h3>
 <ol>
 <li>

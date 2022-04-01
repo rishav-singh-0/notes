@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microcontroller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html" class="active"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html" class="active"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -265,6 +265,22 @@ These set of instructions will set the carry flag to 1 as 30 – 40 generates a 
 MVI B 30 (load 30H in register B)
 SUB B (A = A – B)
 These set of instructions will reset the sign flag to 0 as 40 – 30 does not generate any carry/borrow.</p>
+<p>Overflow Flag (O) – This flag will be set (1) if the result of a signed operation is too large to fit in the number of bits available to represent it, otherwise reset (0). After any operation, if D[6] generates any carry and passes to D[7] OR if D[6] does not generates carry but D[7] generates, overflow flag becomes set, i.e., 1. If D[6] and D[7] both generate carry or both do not generate any carry, then overflow flag becomes reset, i.e., 0.
+Example: On adding bytes 100 + 50 (result is not in range -128…127), so overflow flag will set.</p>
+<p>MOV AL, 50 (50 is 01010000 which is positive)
+MOV BL, 32 (32 is 00110010 which is positive)
+ADD AL, BL (82 is 10000010 which is negative)
+Overflow flag became set as we added 2 +ve numbers and we got a -ve number.</p>
+<p>(b) Control Flags – The control flags enable or disable certain operations of the microprocessor. There are 3 control flags in 8086 microprocessor and these are:</p>
+<p>Directional Flag (D) – This flag is specifically used in string instructions.
+If directional flag is set (1), then access the string data from higher memory location towards lower memory location.
+If directional flag is reset (0), then access the string data from lower memory location towards higher memory location.
+Interrupt Flag (I) – This flag is for interrupts.
+If interrupt flag is set (1), the microprocessor will recognize interrupt requests from the peripherals.
+If interrupt flag is reset (0), the microprocessor will not recognize any interrupt requests and will ignore them.
+Trap Flag (T) – This flag is used for on-chip debugging. Setting trap flag puts the microprocessor into single step mode for debugging. In single stepping, the microprocessor executes a instruction and enters into single step ISR.
+If trap flag is set (1), the CPU automatically generates an internal interrupt after each instruction, allowing a program to be inspected as it executes instruction by instruction.
+If trap flag is reset (0), no function is performed.</p>
 
                     </main>
 

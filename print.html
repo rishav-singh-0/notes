@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microcontroller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="microcontroller"><a class="header" href="#microcontroller">Microcontroller</a></h1>
+                        <h1 id="microprocessors"><a class="header" href="#microprocessors">Microprocessors</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-the-microprocessor-and-computer"><a class="header" href="#introduction-to-the-microprocessor-and-computer">Introduction to the Microprocessor and Computer</a></h1>
 <p>The world’s first microprocessor, the Intel 4004, was a 4-bit
 microprocessor–programmable controller on a chip. It addressed a mere 4096,
@@ -219,7 +219,7 @@ or 66 MHz. The L2 cache and microprocessor are on a circuit board called the
 Pentium II module. This onboard L2 cache operates at a speed of 133 MHz and
 stores 512K bytes of information. The microprocessor on the Pentium II module
 is actually Pentium Pro with MMX extensions.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="microcontroller-1"><a class="header" href="#microcontroller-1">Microcontroller</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="microprocessors-1"><a class="header" href="#microprocessors-1">Microprocessors</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>The addressing modes for this powerful family of microprocessors are described
 for the real, protected, and flat modes of operation. Real mode memory (DOS
@@ -234,7 +234,7 @@ and Core2 address 1T byte of memory in a flat memory model. Windows Vista
 or Windows 64 is needed to operate the Pentium 4 or Core2 in 64-bit mode
 using the flat mode memory to access the entire 1T byte of memory.</p>
 <h1 id="8086"><a class="header" href="#8086">8086</a></h1>
-<p><a href="microprocessors/./images/8086_architecture-diagram.jpg">architecture_diagram</a></p>
+<p><img src="microprocessors/./images/8086_architecture-diagram.jpg" alt="architecture_diagram" /></p>
 <ul>
 <li>8086 does not have a RAM or ROM inside it. However, it has internal registers for storing intermediate and final results and interfaces with memory located outside it through the System Bus.</li>
 <li>It is a 16-bit Integer processor in a 40 pin, Dual Inline Packaged IC.</li>
@@ -324,7 +324,6 @@ then CS x 10H = 43210H + offset =  44210H
 <h3 id="arithmetic-logic-unit-16-bit"><a class="header" href="#arithmetic-logic-unit-16-bit">Arithmetic Logic Unit (16 bit)</a></h3>
 <p>Performs 8 and 16 bit arithmetic and logic operations. </p>
 <h3 id="special-purpose-registers-16-bit"><a class="header" href="#special-purpose-registers-16-bit">Special purpose registers (16-bit)</a></h3>
-<p><img src="microprocessors/./images/memory-segment.png" alt="memory-segment" /> </p>
 <h4 id="--stack-pointersp"><a class="header" href="#--stack-pointersp">- Stack Pointer(SP)</a></h4>
 <p>Points to Stack top. Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.</p>
 <h4 id="--base-pointerbp"><a class="header" href="#--base-pointerbp">- Base Pointer(BP)</a></h4>
@@ -337,6 +336,7 @@ then CS x 10H = 43210H + offset =  44210H
 <p>The EU fetches an opcode from the queue into the instruction register. The instruction decoder decodes it and sends the information to the control circuit for execution. </p>
 <h3 id="flagstatus-register-16-bits"><a class="header" href="#flagstatus-register-16-bits">Flag/Status register (16 bits):</a></h3>
 <p>It has 9 flags that help change or recognize the state of the microprocessor. </p>
+<p><img src="microprocessors/./images/8086_flags.png" alt="flags" /> </p>
 <h3 id="6-status-flags"><a class="header" href="#6-status-flags">6 Status flags:</a></h3>
 <ol>
 <li>
@@ -521,6 +521,22 @@ These set of instructions will set the carry flag to 1 as 30 – 40 generates a 
 MVI B 30 (load 30H in register B)
 SUB B (A = A – B)
 These set of instructions will reset the sign flag to 0 as 40 – 30 does not generate any carry/borrow.</p>
+<p>Overflow Flag (O) – This flag will be set (1) if the result of a signed operation is too large to fit in the number of bits available to represent it, otherwise reset (0). After any operation, if D[6] generates any carry and passes to D[7] OR if D[6] does not generates carry but D[7] generates, overflow flag becomes set, i.e., 1. If D[6] and D[7] both generate carry or both do not generate any carry, then overflow flag becomes reset, i.e., 0.
+Example: On adding bytes 100 + 50 (result is not in range -128…127), so overflow flag will set.</p>
+<p>MOV AL, 50 (50 is 01010000 which is positive)
+MOV BL, 32 (32 is 00110010 which is positive)
+ADD AL, BL (82 is 10000010 which is negative)
+Overflow flag became set as we added 2 +ve numbers and we got a -ve number.</p>
+<p>(b) Control Flags – The control flags enable or disable certain operations of the microprocessor. There are 3 control flags in 8086 microprocessor and these are:</p>
+<p>Directional Flag (D) – This flag is specifically used in string instructions.
+If directional flag is set (1), then access the string data from higher memory location towards lower memory location.
+If directional flag is reset (0), then access the string data from lower memory location towards higher memory location.
+Interrupt Flag (I) – This flag is for interrupts.
+If interrupt flag is set (1), the microprocessor will recognize interrupt requests from the peripherals.
+If interrupt flag is reset (0), the microprocessor will not recognize any interrupt requests and will ignore them.
+Trap Flag (T) – This flag is used for on-chip debugging. Setting trap flag puts the microprocessor into single step mode for debugging. In single stepping, the microprocessor executes a instruction and enters into single step ISR.
+If trap flag is set (1), the CPU automatically generates an internal interrupt after each instruction, allowing a program to be inspected as it executes instruction by instruction.
+If trap flag is reset (0), no function is performed.</p>
 
                     </main>
 
