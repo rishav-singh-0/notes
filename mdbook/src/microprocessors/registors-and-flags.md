@@ -129,3 +129,23 @@ MVI A 40 (load 40H in register A)
 MVI B 30 (load 30H in register B)
 SUB B (A = A – B)
 These set of instructions will reset the sign flag to 0 as 40 – 30 does not generate any carry/borrow.
+
+Overflow Flag (O) – This flag will be set (1) if the result of a signed operation is too large to fit in the number of bits available to represent it, otherwise reset (0). After any operation, if D[6] generates any carry and passes to D[7] OR if D[6] does not generates carry but D[7] generates, overflow flag becomes set, i.e., 1. If D[6] and D[7] both generate carry or both do not generate any carry, then overflow flag becomes reset, i.e., 0.
+Example: On adding bytes 100 + 50 (result is not in range -128…127), so overflow flag will set.
+
+MOV AL, 50 (50 is 01010000 which is positive)
+MOV BL, 32 (32 is 00110010 which is positive)
+ADD AL, BL (82 is 10000010 which is negative)
+Overflow flag became set as we added 2 +ve numbers and we got a -ve number.
+
+(b) Control Flags – The control flags enable or disable certain operations of the microprocessor. There are 3 control flags in 8086 microprocessor and these are:
+
+Directional Flag (D) – This flag is specifically used in string instructions.
+If directional flag is set (1), then access the string data from higher memory location towards lower memory location.
+If directional flag is reset (0), then access the string data from lower memory location towards higher memory location.
+Interrupt Flag (I) – This flag is for interrupts.
+If interrupt flag is set (1), the microprocessor will recognize interrupt requests from the peripherals.
+If interrupt flag is reset (0), the microprocessor will not recognize any interrupt requests and will ignore them.
+Trap Flag (T) – This flag is used for on-chip debugging. Setting trap flag puts the microprocessor into single step mode for debugging. In single stepping, the microprocessor executes a instruction and enters into single step ISR.
+If trap flag is set (1), the CPU automatically generates an internal interrupt after each instruction, allowing a program to be inspected as it executes instruction by instruction.
+If trap flag is reset (0), no function is performed.
