@@ -13,14 +13,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@master
 
-      - name: Rust setup
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-
       - name: Installation
         run: |
-          cargo install mdbook
+          tar -xz --directory=bin --file=bin/mdbook*.tar.gz
+          echo "$(pwd)/bin" >> $GITHUB_PATH
 
       - name: Build
         run: |
