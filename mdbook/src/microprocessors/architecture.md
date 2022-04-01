@@ -115,14 +115,16 @@ Performs 8 and 16 bit arithmetic and logic operations.
 
 ### Special purpose registers (16-bit)
 
-#### - Stack Pointer(SP)
-Points to Stack top. Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.
-#### - Base Pointer(BP)
-BP can hold offset address of any location in the stack segment. It is used to access random locations of the stack.
-#### - Source Index(SI)
-It holds offset address in Data Segment during string operations.
-#### - Destination Index(DI)
-It holds offset address in Extra Segment during string operations.
+1. **Stack Pointer(SP)**
+- Points to Stack top. 
+- Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.
+2. **Base Pointer(BP)**
+- BP can hold offset address of any location in the stack segment. 
+- It is used to access random locations of the stack.
+3. **Source Index(SI)**
+- It holds offset address in Data Segment during string operations.
+4. **Destination Index(DI)**
+- It holds offset address in Extra Segment during string operations.
 
 ### Instruction Register and Instruction Decoder
 The EU fetches an opcode from the queue into the instruction register. The instruction decoder decodes it and sends the information to the control circuit for execution. 
