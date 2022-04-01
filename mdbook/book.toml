@@ -1,6 +1,6 @@
 [book]
-authors = ["Rishav Singh", "Kashyap Joshi"]
+authors = ["Rishav Singh"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Industrial Surveillance Robot"
+title = "Notes"
