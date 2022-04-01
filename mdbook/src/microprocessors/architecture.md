@@ -15,7 +15,7 @@ using the flat mode memory to access the entire 1T byte of memory.
 
 # 8086
 
-[architecture_diagram](./images/8086_architecture-diagram.jpg)
+![architecture_diagram](./images/8086_architecture-diagram.jpg)
 
 - 8086 does not have a RAM or ROM inside it. However, it has internal registers for storing intermediate and final results and interfaces with memory located outside it through the System Bus.
 - It is a 16-bit Integer processor in a 40 pin, Dual Inline Packaged IC.
@@ -115,8 +115,6 @@ Performs 8 and 16 bit arithmetic and logic operations.
 
 ### Special purpose registers (16-bit)
 
-![memory-segment](./images/memory-segment.png) 
-
 #### - Stack Pointer(SP)
 Points to Stack top. Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.
 #### - Base Pointer(BP)
@@ -131,6 +129,8 @@ The EU fetches an opcode from the queue into the instruction register. The instr
 
 ### Flag/Status register (16 bits): 
 It has 9 flags that help change or recognize the state of the microprocessor. 
+
+![flags](./images/8086_flags.png) 
 
 ### 6 Status flags: 
  
