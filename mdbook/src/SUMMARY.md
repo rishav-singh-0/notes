@@ -8,4 +8,5 @@
       - [Architecture](microprocessors/architecture.md)
       - [Addressing Modes](microprocessors/addressing-modes.md) 
       - [Registers and Flags](microprocessors/registors-and-flags.md)
+      - [Memory Segmentation](microprocessors/memory-segmentation.md) 
 
