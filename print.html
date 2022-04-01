@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -324,14 +324,32 @@ then CS x 10H = 43210H + offset =  44210H
 <h3 id="arithmetic-logic-unit-16-bit"><a class="header" href="#arithmetic-logic-unit-16-bit">Arithmetic Logic Unit (16 bit)</a></h3>
 <p>Performs 8 and 16 bit arithmetic and logic operations. </p>
 <h3 id="special-purpose-registers-16-bit"><a class="header" href="#special-purpose-registers-16-bit">Special purpose registers (16-bit)</a></h3>
-<h4 id="--stack-pointersp"><a class="header" href="#--stack-pointersp">- Stack Pointer(SP)</a></h4>
-<p>Points to Stack top. Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.</p>
-<h4 id="--base-pointerbp"><a class="header" href="#--base-pointerbp">- Base Pointer(BP)</a></h4>
-<p>BP can hold offset address of any location in the stack segment. It is used to access random locations of the stack.</p>
-<h4 id="--source-indexsi"><a class="header" href="#--source-indexsi">- Source Index(SI)</a></h4>
-<p>It holds offset address in Data Segment during string operations.</p>
-<h4 id="--destination-indexdi"><a class="header" href="#--destination-indexdi">- Destination Index(DI)</a></h4>
-<p>It holds offset address in Extra Segment during string operations.</p>
+<ol>
+<li><strong>Stack Pointer(SP)</strong></li>
+</ol>
+<ul>
+<li>Points to Stack top. </li>
+<li>Stack is in Stack Segment, used during instructions like PUSH, POP, CALL, RET etc.</li>
+</ul>
+<ol start="2">
+<li><strong>Base Pointer(BP)</strong></li>
+</ol>
+<ul>
+<li>BP can hold offset address of any location in the stack segment. </li>
+<li>It is used to access random locations of the stack.</li>
+</ul>
+<ol start="3">
+<li><strong>Source Index(SI)</strong></li>
+</ol>
+<ul>
+<li>It holds offset address in Data Segment during string operations.</li>
+</ul>
+<ol start="4">
+<li><strong>Destination Index(DI)</strong></li>
+</ol>
+<ul>
+<li>It holds offset address in Extra Segment during string operations.</li>
+</ul>
 <h3 id="instruction-register-and-instruction-decoder"><a class="header" href="#instruction-register-and-instruction-decoder">Instruction Register and Instruction Decoder</a></h3>
 <p>The EU fetches an opcode from the queue into the instruction register. The instruction decoder decodes it and sends the information to the control circuit for execution. </p>
 <h3 id="flagstatus-register-16-bits"><a class="header" href="#flagstatus-register-16-bits">Flag/Status register (16 bits):</a></h3>
@@ -537,6 +555,96 @@ If interrupt flag is reset (0), the microprocessor will not recognize any interr
 Trap Flag (T) – This flag is used for on-chip debugging. Setting trap flag puts the microprocessor into single step mode for debugging. In single stepping, the microprocessor executes a instruction and enters into single step ISR.
 If trap flag is set (1), the CPU automatically generates an internal interrupt after each instruction, allowing a program to be inspected as it executes instruction by instruction.
 If trap flag is reset (0), no function is performed.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="memory-segmentation-in-8086"><a class="header" href="#memory-segmentation-in-8086">Memory Segmentation in 8086</a></h1>
+<p><img src="microprocessors/./images/8086_memory-segmentation.png" alt="memory-segmentation" /> </p>
+<h2 id="concept-of-segmentation"><a class="header" href="#concept-of-segmentation">Concept of Segmentation</a></h2>
+<ul>
+<li>
+<p>Segmentation means dividing the memory into logically different parts called segments.</p>
+</li>
+<li>
+<p>8086 has a 20-bit address bus, hence it can access 2^20 Bytes i.e. 1MB memory.</p>
+</li>
+<li>
+<p>But this also means that Physical address will now be 20 bit. It is not possible to work with a 20 bit address as it is not a byte compatible number. (20 bits is two and a half bytes). To avoid working with this incompatible number, we create a <strong>virtual model</strong> of the memory.</p>
+</li>
+<li>
+<p>Here the memory is divided into 4 segments: Code, Stack Data and Extra.</p>
+</li>
+<li>
+<p>The max size of a segment is 64KB and the minimum size is 16 bytes.</p>
+</li>
+<li>
+<p>Now programmer can access each location with a VIRTUAL ADDRESS.</p>
+</li>
+<li>
+<p>The Virtual Address is a combination of Segment Address and Offset Address.</p>
+</li>
+<li>
+<p>Segment Address indicates where the segment is located in the memory (base address)</p>
+</li>
+<li>
+<p>Offset Address gives the offset of the target location within the segment.</p>
+</li>
+<li>
+<p>Since both, Segment Address and Offset Address are 16 bits each, they both are compatible numbers and can be easily used by the programmer.</p>
+</li>
+<li>
+<p>Moreover, Segment Address is given only in the beginning of the program, to initialize the segment. Thereafter, we only give offset address.</p>
+</li>
+<li>
+<p>Hence we can access 1 MB memory using only a 16 bit offset address for most part of the program. This is the advantage of segmentation.</p>
+</li>
+<li>
+<p>Moreover, dividing Code, stack and Data into different segments, makes the memory more organized and prevents accidental overwrites between them.</p>
+</li>
+<li>
+<p>The Maximum Size of a segment is 64KB because offset addresses are of 16 bits. 216 = 64KB.</p>
+</li>
+<li>
+<p>As max size of a segment is 64KB, programmer can create multiple Code/Stack/Data segments till the entire 1 MB is utilized, but only one of each type will be currently active.</p>
+</li>
+<li>
+<p>The physical address is calculated by the microprocessor, using the formula:</p>
+<pre><code>PHYSICAL ADDRESS = SEGMENT ADDRESS X 10H + OFFSET ADDRESS
+Ex: if Segment Address = 1234H and Offset Address is 0005H then
+Physical Address = 1234H x 10H + 0005H = 12345H
+</code></pre>
+</li>
+<li>
+<p>This formula automatically ensures that the minimum size of a segment is 10H bytes
+(10H = 16 Bytes).</p>
+</li>
+</ul>
+<h2 id="code-segment"><a class="header" href="#code-segment">Code Segment</a></h2>
+<ul>
+<li>This segment is used to hold the <strong>program</strong> to be executed.</li>
+<li><strong>Instruction are fetched</strong> from the Code Segment.</li>
+<li>CS register holds the 16-bit base address for this segment.</li>
+<li>IP register (Instruction Pointer) holds the 16-bit offset address.</li>
+</ul>
+<h2 id="data-segment"><a class="header" href="#data-segment">Data Segment</a></h2>
+<ul>
+<li>This segment is used to hold <strong>general data</strong>.</li>
+<li>This segment also holds the <strong>source operands</strong> during <strong>string operations</strong>.</li>
+<li>DS register holds the 16-bit base address for this segment.</li>
+<li>BX register is used to hold the 16-bit offset for this segment.</li>
+<li>SI register (Source Index) holds the 16-bit offset address during String Operations.</li>
+</ul>
+<h2 id="stack-segment"><a class="header" href="#stack-segment">Stack Segment</a></h2>
+<ul>
+<li>This segment holds the <strong>Stack memory</strong>, which operates in LIFO manner.</li>
+<li>SS holds its Base address.</li>
+<li>SP (Stack Pointer) holds the 16-bit offset address of the Top of the Stack.</li>
+<li>BP (Base Pointer) holds the 16-bit offset address during <strong>Random Access</strong>.</li>
+</ul>
+<h2 id="extra-segment"><a class="header" href="#extra-segment">Extra Segment</a></h2>
+<ul>
+<li>This segment is used to hold <strong>general data</strong>.</li>
+<li>Additionally, this segment is used as the destination during String Operations.</li>
+<li>ES holds the Base Address.</li>
+<li>DI holds the offset address during string operations.</li>
+</ul>
 
                     </main>
 
