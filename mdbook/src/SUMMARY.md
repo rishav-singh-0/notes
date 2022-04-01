@@ -1,13 +1,11 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
+- [Microprocessors](microprocessors/Readme.md) 
 
-# Microprocessors
+  - [History](microprocessors/history.md)
 
-- [History](./microprocessors/history.md)
-
-## 8086
-- [Architecture](./microprocessors/architecture.md)
-- [Addressing Modes](./microprocessors/addressing-modes.md) 
-- [Registers and Flags](./microprocessors/registors-and-flags_8086.md)
+  - [8086 Microcontroller](microprocessors/Readme.md)
+      - [Architecture](microprocessors/architecture.md)
+      - [Addressing Modes](microprocessors/addressing-modes.md) 
+      - [Registers and Flags](microprocessors/registors-and-flags.md)
 
