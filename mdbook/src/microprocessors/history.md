@@ -12,6 +12,7 @@ weighed much less than an ounce. The main problems with this early microprocesso
 were its speed, word width, and memory size.
 
 ## The 8085 Microprocessor
+
 In 1977, Intel Corporation introduced an updated version of the 8080—the 8085.
 The 8085 was to be the last 8-bit, general-purpose microprocessor developed by
 Intel. Although only slightly more advanced than an 8080 microprocessor, the
@@ -22,12 +23,12 @@ internal clock generator, internal system controller, and higher clock
 frequency. This higher level of component integration reduced the 8085’s cost
 and increased its usefulness. 
 
-
 The 16-bit microprocessor evolved mainly because of the need for larger memory systems.
 The popularity of the Intel family was ensured in 1981, when IBM Corporation decided to use
 the 8088 microprocessor in its personal computer. The 16-bit 8086 and 8088 provided 1M byte of memory.
 
-## The 80286 Microprocessor 
+## The 80286 Microprocessor
+
 The 80286 microprocessor (also a 16-bit architecture microprocessor)
 was almost identical to the 8086 and 8088, except it addressed a 16M-byte memory system instead
 of a 1M-byte system. The instruction set of the 80286 was almost identical to the 8086 and 8088,
@@ -38,6 +39,7 @@ the instructions, which led to an eightfold increase in speed for many instructi
 8086/8088 instructions.
 
 ## The 32-Bit Microprocessor
+
 Applications began to demand faster microprocessor speeds, more
 memory, and wider data paths. This led to the arrival of the 80386 in 1986 by Intel Corporation.
 The 80386 represented a major overhaul of the 16-bit 8086–80286 architecture. The 80386 was
@@ -55,7 +57,8 @@ single integrated circuit. The 80386EX also contains 24 lines for input/output
 data, a 26-bit address bus, a 16-bit data bus, a DRAM refresh controller, and
 programmable chip selection logic.
 
-## The 80486 Microprocessor. 
+## The 80486 Microprocessor.
+
 In 1989, Intel released the 80486 microprocessor, which incorpo- rated an
 80386-like microprocessor, an 80387-like numeric coprocessor, and an 8K-byte
 cache memory system into one integrated package. Although the 80486
@@ -79,7 +82,8 @@ triple-clocked version that runs with a bus speed of 40 MHz and a clock speed
 of 120 MHz. The future promises to bring microprocessors that internally
 execute instructions at rates of up to 10 GHz or higher.
 
-## Pentium II and Pentium Xeon Microprocessors 
+## Pentium II and Pentium Xeon Microprocessors
+
 The Pentium II microprocessor (released in 1997) represents a new direction for
 Intel. Instead of being an integrated circuit as with prior ver- sions of the
 microprocessor, Intel has placed the Pentium II on a small circuit board. The
@@ -90,5 +94,3 @@ or 66 MHz. The L2 cache and microprocessor are on a circuit board called the
 Pentium II module. This onboard L2 cache operates at a speed of 133 MHz and
 stores 512K bytes of information. The microprocessor on the Pentium II module
 is actually Pentium Pro with MMX extensions.
-
-
