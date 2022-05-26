@@ -10,3 +10,11 @@
       - [Registers and Flags](microprocessors/registors-and-flags.md)
       - [Memory Segmentation](microprocessors/memory-segmentation.md) 
 
+- [Computer Architecture](./computer-architecture/Readme.md) 
+  - [Introduction](./computer-architecture/1.intro.md)
+  - [Performance Measurement](./computer-architecture/2.performance-measurement.md)
+  - [Intro to RISC](./computer-architecture/3.intro-to-risc.md)
+  - [Pipeline Hazards](./computer-architecture/4.pipeline-hazards.md)
+
+
+
