@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Addressing Modes - Notes</title>
+        <title>Pipeline Hazards - Notes</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html" class="active"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html" class="active"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,16 +134,48 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h2 id="pipeline-hazards"><a class="header" href="#pipeline-hazards">Pipeline Hazards</a></h2>
+<ul>
+<li>Hazards: circumstances that would cause incorrect execution if next
+instruction is fetched and executed</li>
+<li><strong>Structural hazards:</strong> Different instructions, at different stages, in the
+pipeline want to use the same hardware resource</li>
+<li><strong>Data hazards:</strong> An instruction in the pipeline requires data to be computed by
+a previous instruction still in the pipeline</li>
+<li><strong>Control hazards:</strong> Succeeding instruction, to put into pipeline, depends on the
+outcome of a previous branch instruction, already in pipeline</li>
+</ul>
+<h2 id="structural-hazard"><a class="header" href="#structural-hazard">Structural Hazard</a></h2>
+<ul>
+<li>
+<p>Eliminate the use same hardware for two different things at the same time</p>
+</li>
+<li>
+<p>Solution 1: Wait</p>
+<ul>
+<li>must detect the hazard</li>
+<li>must have mechanism to stall</li>
+</ul>
+</li>
+<li>
+<p>Solution 2: Duplicate hardware</p>
+<ul>
+<li>Multiple such units will help both instruction to progress
+<img src="./images/eliminating-structural-hazard.png" alt="Eliminating Structural Hazard" /> </li>
+</ul>
+</li>
+</ul>
+<h2 id="data-hazard"><a class="header" href="#data-hazard">Data Hazard</a></h2>
+<ul>
+<li></li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../microprocessors/architecture.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../computer-architecture/3.intro-to-risc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="../microprocessors/registors-and-flags.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -151,11 +183,8 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../microprocessors/architecture.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../computer-architecture/3.intro-to-risc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="../microprocessors/registors-and-flags.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

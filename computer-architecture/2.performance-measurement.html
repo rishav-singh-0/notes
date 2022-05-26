@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Performance Measurement - Notes</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html" class="active"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="when-can-we-say-one-computer--architecture--design-is-better-than-others"><a class="header" href="#when-can-we-say-one-computer--architecture--design-is-better-than-others">When can we say one computer / architecture / design is better than others?</a></h2>
+<ul>
+<li>Desktop PC (execution time of a program)</li>
+<li>Server (transactions / unit time)</li>
+</ul>
+<h2 id="when-can-we-say-x-is-n-times-fasterthany-"><a class="header" href="#when-can-we-say-x-is-n-times-fasterthany-">When can we say X is n times fasterthanY ?</a></h2>
+<ul>
+<li>Execution time(y) / Execution time(x) =n</li>
+<li>Throughput(x) / Throughput(y) = n</li>
+</ul>
+<h2 id="typical-performance-metrics"><a class="header" href="#typical-performance-metrics">Typical performance metrics</a></h2>
+<ul>
+<li>Response time - When a request is coming from a machine to another machine,
+the time for the second machine to respond to that request is known as
+response time</li>
+<li>Throughput - Number of task that is completed in a unit time</li>
+<li>CPU time - Total time associated with respect to a program in cpu execution</li>
+<li>Wall clock time - Actual time taken for a program to execute ie sum total of
+cpu time and non-cpu time(peripheral time)</li>
+<li>Speedup - If the execution time of one is larger than other then it means
+speedup</li>
+</ul>
+<h2 id="benchmarks"><a class="header" href="#benchmarks">Benchmarks</a></h2>
+<ul>
+<li>Toy programs (e.g. sorting, matrix multiply)</li>
+<li>Synthetic benchmarks (e.g. Dhrystone)</li>
+<li>Benchmark suites (e.g. SPEC06, SPLASH)</li>
+</ul>
+<h2 id="specratio"><a class="header" href="#specratio">SPECRatio</a></h2>
+<p>SPECRatio(A) = Execution time(reference) / Execution time(A)</p>
+<p>Reference for SPEC 2006:
+Sun Ultra Enterprise 2 workstation with a 296-MHz UltraSPARC II processor</p>
+<h2 id="amdhals-law"><a class="header" href="#amdhals-law">Amdhal's Law</a></h2>
+<ul>
+<li>Amdahl’s Law defines the speedup that can be gained by improving some portion
+of a computer.</li>
+<li>The performance improvement to be gained from using some faster mode of
+execution is limited by the fraction of the time the faster mode can be used.</li>
+</ul>
+<p><img src="./images/amdahls-law.png" alt="Amdahl's Law" /></p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>Suppose that we want to enhance the floating point operations of a processor by
+introducing a new advanced FPU unit. Let the new FPU is 10 times faster on
+floating point computations than the original processor. Assuming a program has
+40% floating point operations, what is the overall speedup gained by
+incorporating the enhancement?</p>
+<p>Solution:</p>
+<ul>
+<li>Fraction enhanced = 0.4</li>
+<li>Speedup enhanced = 10</li>
+<li>Therefore speedup = 1/(0.6 + 0.4/10) = 1.56 times faster</li>
+</ul>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<p>A common transformation required in graphics processors is square root.
+Implementations of floating-point (FP) square root vary significantly in
+performance, especially among processors designed for graphics. Suppose FP
+square root (FPSQR) is responsible for 20% of the execution time of a critical
+graphics benchmark.</p>
+<p>One proposal is to enhance the FPSQR hardware and speed up this operation by a
+factor of 10. The other alternative is just to try to make all FP instructions
+in the graphics processor run faster by a factor of 1.6; FP instructions are
+responsible for half of the execution time for the application. Compare these
+two design alternatives using Amdahl's Law.</p>
+<p>Solution:</p>
+<ul>
+<li>Case A: FPSQR hardware optimization 
+<ul>
+<li>S = 1.219</li>
+</ul>
+</li>
+<li>Case B: FP instructions optimization
+<ul>
+<li>S = 1.23</li>
+</ul>
+</li>
+</ul>
+<h2 id="principles-of-computer-design"><a class="header" href="#principles-of-computer-design">Principles of Computer Design</a></h2>
+<ul>
+<li>All processors are driven by clock.</li>
+<li>Expressed as clock rate in GHz or clock period in ns</li>
+<li>CPU Time = CPU clock cycles x clock cycle time</li>
+</ul>
+<p>CPl = CPU clock cycles for a program / Instruction Count
+CPU Time = IC * CPI * CCT</p>
+<ul>
+<li>Clock cycle time- hardware technology</li>
+<li>CPI- Organization and ISA</li>
+<li>IC-ISA and compiler technology</li>
+</ul>
+<h3 id="example-basic-performance-analysis"><a class="header" href="#example-basic-performance-analysis">Example: Basic Performance Analysis</a></h3>
+<p>Consider two programs A and B that solves a given problem. A is scheduled to
+run on a processor P1 operating at 1 GHz and B is scheduled to run on processor
+P2 running at 1.4 GHz. A has total 10000 instructions, out of which 20% are
+branch instructions, 40% load store instructions and rest are ALU instructions.
+B is composed of 25% branch instructions. The number of load store instructions
+in B is twice the count of ALU instructions. Total instruction count of B is
+12000. In both P1 and P2 branch instructions have an average CPI of 5 and ALU
+instructions has an average CPI of 1.5. Both the architectures differ in the
+CPI of load-store instruction. They are 2 and 3 for P1 and P2, respectively.
+Which mapping (A on P1 or B on P2) solves the problem faster, and by how much?</p>
+<p><img src="./images/example-performance-analysis.png" alt="Performance Analysis Solution" /> </p>
+<h3 id="amdahls-law"><a class="header" href="#amdahls-law">Amdahl's Law</a></h3>
+<p>A company is releasing 2 latest versions (beta and gamma) of its basic
+processor architecture named alpha. Beta and gamma are designed by
+making modifications on three major components (X, Y and Z) of the alpha.
+It was observed that for a program A the fractions of the total execution time
+on these three components, X, Y, and Z are 40%, 30%, and 20%,
+respectively. Beta speeds up X and Z by 2 times but slows down Y by 1.3
+times, where as gamma speeds up X, Y and Z by 1.2, 1.3 and 1.4 times,
+respectively.
+a. How much faster is gamma over alpha for running A?
+b. Whether beta or gamma is faster for running A? Find the speedup factor</p>
+<p>Solution:
+a. Gamma is 1.239 times faster over alpha
+b. Beta is faster than gamma -&gt; 1.267/1.239 = 1.022 times</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../computer-architecture/1.intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../computer-architecture/3.intro-to-risc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../computer-architecture/1.intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../computer-architecture/3.intro-to-risc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

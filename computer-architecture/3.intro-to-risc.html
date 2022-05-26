@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Memory Segmentation - Notes</title>
+        <title>Intro to RISC - Notes</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html" class="active"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html" class="active"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,105 +134,201 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="memory-segmentation-in-8086"><a class="header" href="#memory-segmentation-in-8086">Memory Segmentation in 8086</a></h1>
-<p><img src="./images/8086_memory-segmentation.png" alt="memory-segmentation" /> </p>
-<h2 id="concept-of-segmentation"><a class="header" href="#concept-of-segmentation">Concept of Segmentation</a></h2>
+                        <h1 id="introduction-to-mips"><a class="header" href="#introduction-to-mips">Introduction to MIPS</a></h1>
+<ul>
+<li>Microprocessor without Interlocked Pipelined Stages</li>
+<li>32 registers (32 bit each)</li>
+<li>Uniform length instructions</li>
+<li>RISC- Load store architecture</li>
+</ul>
+<h2 id="advantages-of-mips"><a class="header" href="#advantages-of-mips">Advantages of MIPS</a></h2>
+<ul>
+<li>It is easy to understand and measure</li>
+<li>It helps in calculation of CPU processor speed (cycles per second), CPI
+(average clock cycles per instruction) and Execution time.</li>
+<li>It handles when amount of work is large.</li>
+</ul>
+<h2 id="disadvantages-of-mips"><a class="header" href="#disadvantages-of-mips">Disadvantages of MIPS</a></h2>
+<ul>
+<li>It may not reflect real execution, since simple instructions do way better.</li>
+<li>It is an older, obsolete measure of a computer’s speed and power</li>
+</ul>
+<h2 id="instruction-representation"><a class="header" href="#instruction-representation">Instruction Representation</a></h2>
+<p><img src="./images/mips-instruction-representation.png" alt="Instruction Representation" /></p>
+<ul>
+<li>op: basic operation of the instruction (opcode)</li>
+<li>rs: first source operand register</li>
+<li>rt: second source operand register</li>
+<li>rd: destination operand register</li>
+<li>shamt: shift amount</li>
+<li>funct: selects the specific variant of the opcode (function code)</li>
+<li>address: offset for load/store instructions (+/-2^15)</li>
+<li>immediate: constants for immediate instructions</li>
+</ul>
+<p>R = Register type instruction</p>
+<h2 id="pipeline-characteristics"><a class="header" href="#pipeline-characteristics">Pipeline Characteristics</a></h2>
+<ul>
+<li>Pipelining doesn't reduce latency of single task, it improves throughput of
+entire workload</li>
+<li>Pipeline rate limited by slowest pipeline stage</li>
+<li>Potential speedup = Number of pipe stages</li>
+<li>Unbalanced lengths of pipe stages reduces speedup</li>
+<li>Time to fill pipeline and time to drain it reduces speedup</li>
+</ul>
+<h2 id="pipeline-in-circuits"><a class="header" href="#pipeline-in-circuits">Pipeline in Circuits</a></h2>
+<ul>
+<li>Pipelining partitions the system into multiple independent stages with added
+buffers between the stages.</li>
+<li>Pipelining can increase the throughout of a system.</li>
+</ul>
+<p><img src="./images/pipeline-in-circuits.png" alt="Pipeline" /></p>
+<p>Dividing the actual circuit which was n-logic gates into smaller sub components
+and to interface with them with latches is called pipelining inside the
+circuits</p>
+<h2 id="pipeline-in-mips"><a class="header" href="#pipeline-in-mips">Pipeline in MIPS</a></h2>
+<p><img src="./images/mips-pipeline.png" alt="MIPS Pipeline" /></p>
+<ul>
+<li>Each instruction can take at most 5 clock cycles</li>
+</ul>
+<ol>
+<li>Instruction fetch cycle (IF)</li>
+</ol>
+<ul>
+<li>Based on PC, fetch the instruction from memory</li>
+<li>Increment PC</li>
+</ul>
+<ol start="2">
+<li>Instruction decode/register fetch cycle (ID)</li>
+</ol>
+<ul>
+<li>Decode the instruction + register read operation</li>
+<li>Fixed field decoding</li>
+<li>Ex: [ADD R1,R2,R3] : A3.01.02.03
+<ul>
+<li>10100011 00000001 00000010 00000011</li>
+</ul>
+</li>
+<li>Ex: [LW R1,8(R2)] : 86.01.02.03
+<ul>
+<li>10000110 00000001 00001000 00000010</li>
+</ul>
+</li>
+<li>Equality check of registers</li>
+<li>Computation of branch target address if any</li>
+</ul>
+<ol start="3">
+<li>Execution/Effective address cycle (EX)</li>
+</ol>
+<ul>
+<li>Memory reference: Calculate the effective address
+<ul>
+<li>[LW R1,8(R2)]       Effective ADDR= [R2] +8</li>
+</ul>
+</li>
+<li>Register-register ALU instruction
+<ul>
+<li>[ADD R1,R2,R2]      Actual execution ie R2+R3</li>
+</ul>
+</li>
+<li>Register-immediate ALU instruction</li>
+</ul>
+<ol start="4">
+<li>Memory access cycle (MEM)</li>
+</ol>
+<ul>
+<li>Load instruction: Read from memory using effective address [LW R1,8(R2)]</li>
+<li>Store instruction: Write the data in the register to memory using effective
+address [SW R3,16(R4)]</li>
+</ul>
+<ol start="5">
+<li>Write-back cycle (WB)</li>
+</ol>
 <ul>
 <li>
-<p>Segmentation means dividing the memory into logically different parts called segments.</p>
+<p>Register-register ALU instruction or load instruction</p>
 </li>
 <li>
-<p>8086 has a 20-bit address bus, hence it can access 2^20 Bytes i.e. 1MB memory.</p>
+<p>Write the result to register file [LW R1,8(R2)], [ADD R1,R2,R3]</p>
 </li>
 <li>
-<p>But this also means that Physical address will now be 20 bit. It is not possible to work with a 20 bit address as it is not a byte compatible number. (20 bits is two and a half bytes). To avoid working with this incompatible number, we create a <strong>virtual model</strong> of the memory.</p>
-</li>
-<li>
-<p>Here the memory is divided into 4 segments: Code, Stack Data and Extra.</p>
-</li>
-<li>
-<p>The max size of a segment is 64KB and the minimum size is 16 bytes.</p>
-</li>
-<li>
-<p>Now programmer can access each location with a VIRTUAL ADDRESS.</p>
-</li>
-<li>
-<p>The Virtual Address is a combination of Segment Address and Offset Address.</p>
-</li>
-<li>
-<p>Segment Address indicates where the segment is located in the memory (base address)</p>
-</li>
-<li>
-<p>Offset Address gives the offset of the target location within the segment.</p>
-</li>
-<li>
-<p>Since both, Segment Address and Offset Address are 16 bits each, they both are compatible numbers and can be easily used by the programmer.</p>
-</li>
-<li>
-<p>Moreover, Segment Address is given only in the beginning of the program, to initialize the segment. Thereafter, we only give offset address.</p>
-</li>
-<li>
-<p>Hence we can access 1 MB memory using only a 16 bit offset address for most part of the program. This is the advantage of segmentation.</p>
-</li>
-<li>
-<p>Moreover, dividing Code, stack and Data into different segments, makes the memory more organized and prevents accidental overwrites between them.</p>
-</li>
-<li>
-<p>The Maximum Size of a segment is 64KB because offset addresses are of 16 bits. 216 = 64KB.</p>
-</li>
-<li>
-<p>As max size of a segment is 64KB, programmer can create multiple Code/Stack/Data segments till the entire 1 MB is utilized, but only one of each type will be currently active.</p>
-</li>
-<li>
-<p>The physical address is calculated by the microprocessor, using the formula:</p>
-<pre><code>PHYSICAL ADDRESS = SEGMENT ADDRESS X 10H + OFFSET ADDRESS
-Ex: if Segment Address = 1234H and Offset Address is 0005H then
-Physical Address = 1234H x 10H + 0005H = 12345H
-</code></pre>
-</li>
-<li>
-<p>This formula automatically ensures that the minimum size of a segment is 10H bytes
-(10H = 16 Bytes).</p>
+<p>Cycles required to implement different instructions</p>
+<ul>
+<li>Branch instructions — 4 cycles</li>
+<li>Store instructions — 4 cycles</li>
+<li>All other instructions — 5 cycles</li>
+</ul>
 </li>
 </ul>
-<h2 id="code-segment"><a class="header" href="#code-segment">Code Segment</a></h2>
+<h2 id="pipeline-issues"><a class="header" href="#pipeline-issues">Pipeline Issues</a></h2>
 <ul>
-<li>This segment is used to hold the <strong>program</strong> to be executed.</li>
-<li><strong>Instruction are fetched</strong> from the Code Segment.</li>
-<li>CS register holds the 16-bit base address for this segment.</li>
-<li>IP register (Instruction Pointer) holds the 16-bit offset address.</li>
+<li>
+<p>Ideal Case: Uniform sub-computations</p>
+<ul>
+<li>The computation to be performed can be evenly partitioned into uniform-latency sub-computations</li>
 </ul>
-<h2 id="data-segment"><a class="header" href="#data-segment">Data Segment</a></h2>
+</li>
+<li>
+<p>Reality: Internal fragmentation</p>
 <ul>
-<li>This segment is used to hold <strong>general data</strong>.</li>
-<li>This segment also holds the <strong>source operands</strong> during <strong>string operations</strong>.</li>
-<li>DS register holds the 16-bit base address for this segment.</li>
-<li>BX register is used to hold the 16-bit offset for this segment.</li>
-<li>SI register (Source Index) holds the 16-bit offset address during String Operations.</li>
+<li>Not all pipeline stages may have the uniform latencies</li>
 </ul>
-<h2 id="stack-segment"><a class="header" href="#stack-segment">Stack Segment</a></h2>
+</li>
+<li>
+<p>Impact of ISA</p>
 <ul>
-<li>This segment holds the <strong>Stack memory</strong>, which operates in LIFO manner.</li>
-<li>SS holds its Base address.</li>
-<li>SP (Stack Pointer) holds the 16-bit offset address of the Top of the Stack.</li>
-<li>BP (Base Pointer) holds the 16-bit offset address during <strong>Random Access</strong>.</li>
+<li>Memory access is a critical sub-computation</li>
+<li>Memory addressing modes should be minimized</li>
+<li>Fast cache memories should be employed</li>
 </ul>
-<h2 id="extra-segment"><a class="header" href="#extra-segment">Extra Segment</a></h2>
+</li>
+<li>
+<p>Ideal Case : Identical computations</p>
 <ul>
-<li>This segment is used to hold <strong>general data</strong>.</li>
-<li>Additionally, this segment is used as the destination during String Operations.</li>
-<li>ES holds the Base Address.</li>
-<li>DI holds the offset address during string operations.</li>
+<li>The same computation is to be performed repeatedly on a large number of input data sets</li>
+</ul>
+</li>
+<li>
+<p>Reality: External fragmentation</p>
+<ul>
+<li>Some pipeline stages may not be used</li>
+</ul>
+</li>
+<li>
+<p>Impact of ISA</p>
+<ul>
+<li>Reduce the complexity and diversity of the instruction types</li>
+<li>RISC architectures use uniform stage simple instructions</li>
+</ul>
+</li>
+<li>
+<p>Ideal Case : Independent computations</p>
+<ul>
+<li>All the instructions are mutually independent</li>
+</ul>
+</li>
+<li>
+<p>Reality: Pipeline stalls - cannot proceed</p>
+<ul>
+<li>A later computation may require the result of an earlier computation</li>
+</ul>
+</li>
+<li>
+<p>Impact of ISA</p>
+<ul>
+<li>Reduce Memory addressing modes - dependency detection</li>
+<li>Use register addressing mode - easy dependencies check</li>
+</ul>
+</li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../microprocessors/registors-and-flags.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../computer-architecture/2.performance-measurement.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../computer-architecture/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../computer-architecture/4.pipeline-hazards.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -241,10 +337,10 @@ Physical Address = 1234H x 10H + 0005H = 12345H
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../microprocessors/registors-and-flags.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../computer-architecture/2.performance-measurement.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../computer-architecture/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../computer-architecture/4.pipeline-hazards.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

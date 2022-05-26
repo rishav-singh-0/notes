@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - Notes</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html" class="active"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="abstraction-of-modern-computer-architecture"><a class="header" href="#abstraction-of-modern-computer-architecture">Abstraction of Modern Computer Architecture</a></h2>
+<ul>
+<li>Application</li>
+<li>Algorithm</li>
+<li>Programming Language</li>
+<li>Operating System/Virtual Machines</li>
+<li><strong>Instruction Set Architecture</strong></li>
+<li><strong>Microarchitectwre</strong></li>
+<li><strong>Register-Transfer Level</strong></li>
+<li>Gates</li>
+<li>Circuits</li>
+<li>Devices</li>
+<li>Physics</li>
+</ul>
+<ul>
+<li>
+<p>ISA vs Microarchitecture</p>
+</li>
+<li>
+<p>ISA Characteristics</p>
+</li>
+</ul>
+<ul>
+<li>Machine Models</li>
+<li>Encoding</li>
+<li>Data Types</li>
+<li>Instructions</li>
+<li>Addressing Modes</li>
+</ul>
+<p>For each operation that is to be carried out with respect to an instruction, we
+have multiple sub operations like instruction fetch, decode, operand fetch,
+result store and next instruction.</p>
+<h2 id="instruction-execution-cycle"><a class="header" href="#instruction-execution-cycle">Instruction Execution Cycle</a></h2>
+<ul>
+<li>Instruction Fetch - Obtain instruction from program storage</li>
+<li>Instruction Decode - Determine required actions and instruction size</li>
+<li>Operand Fetch - Locate and obtain operand data</li>
+<li>Execute - Compute result value or status</li>
+<li>Result Store - Deposit results in storage for later use</li>
+<li>Next Instruction - Determine successor instruction</li>
+</ul>
+<h2 id="processor-memory-interaction"><a class="header" href="#processor-memory-interaction">Processor Memory Interaction</a></h2>
+<p>If the processor wants to fetch an instruction, the first thing that you have
+to do is the address of the instruction which is available in the program
+counter has to be transferred to a MAR. Similarly, if processor wanted to read
+or write any data into memory, then also the address has to be kept inside MAR.
+So MAR is a register which is known as memory address register, which contains
+the address of the next word that has to be accessed in the memory.</p>
+<p>It can be either for a read or a fetch operation or it can be for a right
+operation. Now whatever is the address that is placed in MAR, the data contents
+are being exchanged through MDR. So, if it is a write operation, then the
+contents in MDR are transferred to memory on a location specified by MAR. If it
+is for an instruction fetch or a read operation, then the contents of the
+designated location specified by MAR are being transferred to the processor and
+it reaches MDR first.</p>
+<p><img src="./images/inside-cpu.png" alt="Inside CPU" /> </p>
+<h2 id="instruction-fetch"><a class="header" href="#instruction-fetch">Instruction FETCH</a></h2>
+<ol>
+<li>address of the next instruction is transferred from PC to MAR</li>
+<li>the instruction is located in memory</li>
+<li>instruction is copied from memory to MDR</li>
+<li>instruction is transferred to and decoded in the IR</li>
+<li>control unit sends signals to appropriate devices to cause execution of the instruction</li>
+</ol>
+<h2 id="memory-address-decoder"><a class="header" href="#memory-address-decoder">Memory Address Decoder</a></h2>
+<p><img src="./images/blck_mem.png" alt="Memory Block" /></p>
+<h2 id="byte-ordering"><a class="header" href="#byte-ordering">Byte Ordering</a></h2>
+<ul>
+<li>Little Endian</li>
+<li>Big Endian
+<img src="./images/byte-ordering.png" alt="Byte Ordering" /> </li>
+</ul>
+<h2 id="byte-alignment"><a class="header" href="#byte-alignment">Byte Alignment</a></h2>
+<h3 id="data-alignment"><a class="header" href="#data-alignment">Data alignment</a></h3>
+<p>Data alignment means putting the data in memory at address equal to some
+multiple of the word size. This increases the performance of system due to the
+way the CPU handles memory. </p>
+<h3 id="data-structure-padding-now-to-align-the-data-it-may-be-necessary-to"><a class="header" href="#data-structure-padding-now-to-align-the-data-it-may-be-necessary-to">Data Structure Padding Now, to align the data, it may be necessary to</a></h3>
+<p>insert some extra bytes between the end of the last data structure and the
+start of the next data structure as the data is placed in memory as multiples
+of fixed word size. This insertion of extra bytes of memory to align the data
+is called data structure padding.</p>
+<h2 id="types-of-operations"><a class="header" href="#types-of-operations">Types of operations</a></h2>
+<h3 id="arithmetic-and-logical-operations"><a class="header" href="#arithmetic-and-logical-operations">Arithmetic and Logical Operations</a></h3>
+<ul>
+<li>integer arithmetic</li>
+<li>comparing two quantities</li>
+<li>shifting, rotating bits in a quantity</li>
+<li>testing, comparing, and converting bits</li>
+</ul>
+<h3 id="data-movement-operations"><a class="header" href="#data-movement-operations">Data Movement Operations</a></h3>
+<ul>
+<li>moving data from memory to the CPU</li>
+<li>moving data from memory to memory</li>
+<li>input and output</li>
+</ul>
+<h3 id="program-control-operations"><a class="header" href="#program-control-operations">Program Control Operations</a></h3>
+<ul>
+<li>starting a program</li>
+<li>halting a program</li>
+<li>skipping to other instructions</li>
+<li>testing data to decide whether to skip over some instructions</li>
+</ul>
+<h2 id="instruction-set-architecture-multiple-instructions-combined-together-to-form"><a class="header" href="#instruction-set-architecture-multiple-instructions-combined-together-to-form">Instruction Set Architecture Multiple instructions combined together to form</a></h2>
+<p>program and multiple programs combined together to form software which will
+basically is a big task. </p>
+<p>Opcode specifies what needs to be done operand specifies where it needs to be
+done. And the set of all possible instruction that a processor can do it is
+known as instruction set architecture.</p>
+<h2 id="classification-of-isa"><a class="header" href="#classification-of-isa">Classification of ISA</a></h2>
+<h3 id="stack"><a class="header" href="#stack">Stack</a></h3>
+<ul>
+<li>Accumulator</li>
+<li>Register-memory</li>
+<li>Register-register / load-store</li>
+</ul>
+<h3 id="addressing-modes"><a class="header" href="#addressing-modes">Addressing Modes</a></h3>
+<ul>
+<li>Register            add r1, r2          r1 &lt;- rl+r2</li>
+<li>Immediate           add r1, #5          r1 &lt;- r1+5</li>
+<li>Direct              add r1, (0x200)     r1 &lt;- r1+M[0x200]</li>
+<li>Register indirect   add r1, (r2)        r1 &lt;- r1+M[r2]</li>
+<li>Displacement        add r1, 100(r2)     r1 &lt;- r1+M[r2+100]</li>
+<li>Indexed             add r1, (r2+r3)     r1 &lt;- r1+M[r2+r3])</li>
+<li>Scaled              add r1, (r2+r3<em>4)   r1 &lt;- r1+M[(r2+r3</em>4]</li>
+<li>Memory indirect     add r1, @(r2)       r1 &lt;- r1+M[M[r2]]</li>
+<li>Auto-increment      add r1, (r2)+       r1 &lt;- r1+M[r2], r2++</li>
+<li>Auto-decrement      add r1, -(r2)       r2--, r1 &lt;- r1+M[r2]</li>
+</ul>
+<h2 id="architecture-vs-microarchitecture"><a class="header" href="#architecture-vs-microarchitecture">Architecture vs. Microarchitecture</a></h2>
+<h3 id="architectureinstruction-set-architecture"><a class="header" href="#architectureinstruction-set-architecture">“Architecture”/Instruction Set Architecture:</a></h3>
+<ul>
+<li>Programmer visible state (Memory &amp; Register)</li>
+<li>Operations (Instructions and how they work)</li>
+<li>Execution Semantics (interrupts)</li>
+<li>Input/Output</li>
+<li>Data Types/Sizes</li>
+</ul>
+<h3 id="microarchitectureorganization"><a class="header" href="#microarchitectureorganization">Microarchitecture/Organization:</a></h3>
+<ul>
+<li>Tradeoffs on how to implement ISA for some metric (Speed, Energy, Cost)</li>
+<li>Examples: Pipeline depth, number of pipelines, cache size, silicon area, peak
+power, execution ordering, bus widths, ALU widths</li>
+</ul>
+<h2 id="why-the-diversity-in-isas-technology-influenced-isa"><a class="header" href="#why-the-diversity-in-isas-technology-influenced-isa">Why the Diversity in ISAs? Technology Influenced ISA</a></h2>
+<ul>
+<li>Storage is expensive, tight encoding important</li>
+<li>Reduced Instruction Set Computer
+<ul>
+<li>Remove instructions until whole computer fits on die</li>
+</ul>
+</li>
+<li>Multicore/Manycore
+<ul>
+<li>Transistors not turning into sequential performance</li>
+</ul>
+</li>
+</ul>
+<p>Application Influenced ISA</p>
+<ul>
+<li>Instructions for Applications
+<ul>
+<li>DSP instructions</li>
+</ul>
+</li>
+<li>Compiler Technology has improved
+<ul>
+<li>SPARC Register Windows no longer needed</li>
+<li>Compiler can register allocate effectively</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../computer-architecture/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../computer-architecture/2.performance-measurement.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../computer-architecture/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../computer-architecture/2.performance-measurement.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
