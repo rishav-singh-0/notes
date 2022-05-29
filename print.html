@@ -1172,8 +1172,49 @@ outcome of a previous branch instruction, already in pipeline</li>
 </li>
 </ul>
 <h2 id="data-hazard"><a class="header" href="#data-hazard">Data Hazard</a></h2>
+<h3 id="read-after-writeraw"><a class="header" href="#read-after-writeraw">Read After Write(RAW)</a></h3>
 <ul>
-<li></li>
+<li>Instr-2 tries to read operand before Instr-1, writes it
+<pre><code>Instr-1: add r1,r2,r3
+Instr-2: sub r4,r1,r3
+</code></pre>
+</li>
+</ul>
+<h3 id="write-after-read-war"><a class="header" href="#write-after-read-war">Write After Read (WAR)</a></h3>
+<ul>
+<li>Instr-2, writes operand before Instr-1, reads it
+<pre><code>Instr-1: sub r4,r1,r3
+Instr-2: add r1,r2,r3
+Instr-3: mul r6,r1,r7
+</code></pre>
+</li>
+<li>Called an anti-dependence by compiler writers.</li>
+<li>This results from reuse of the name r1</li>
+<li>Can’t happen in MIPS 5 stage pipeline because:
+<ul>
+<li>All instructions take 5 stages, and</li>
+<li>Reads are always in stage 2, and</li>
+<li>Writes are always in stage 5</li>
+</ul>
+</li>
+</ul>
+<h3 id="write-after-write-waw"><a class="header" href="#write-after-write-waw">Write After Write (WAW)</a></h3>
+<ul>
+<li>Instr-2, writes operand before Instr-1, writes it.
+<pre><code>Instr-1: sub r1,r4,r3
+Instr-2: add r1,r2,r3
+Instr-3: mul r6,r1,r7
+</code></pre>
+</li>
+<li>Called an output dependence</li>
+<li>This also results from the reuse of name r1</li>
+<li>Can’t happen in MIPS 5 stage pipeline because:
+<ul>
+<li>All instructions take 5 stages, and</li>
+<li>Writes are always in stage 5</li>
+</ul>
+</li>
+<li>WAR and WAW happens in out of order pipes</li>
 </ul>
 
                     </main>
