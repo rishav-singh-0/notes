@@ -15,7 +15,7 @@ jobs:
 
       - name: Installation
         run: |
-          tar -xz --directory=bin --file=bin/mdbook*.tar.gz
+          tar -xz --directory=bin/ -f bin/mdbook*.tar.gz
           echo "$(pwd)/bin" >> $GITHUB_PATH
 
       - name: Build
