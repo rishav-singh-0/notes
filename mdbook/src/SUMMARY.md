@@ -15,6 +15,7 @@
   - [Performance Measurement](./computer-architecture/2.performance-measurement.md)
   - [Intro to RISC](./computer-architecture/3.intro-to-risc.md)
   - [Pipeline Hazards](./computer-architecture/4.pipeline-hazards.md)
+  - [Compiler Techniques](./computer-architecture/6.compiler-techniques.md)
 
 
 
