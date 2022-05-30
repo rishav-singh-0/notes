@@ -210,6 +210,183 @@ Instr-3: mul r6,r1,r7
 </li>
 <li>WAR and WAW happens in out of order pipes</li>
 </ul>
+<h3 id="handle-data-hazards"><a class="header" href="#handle-data-hazards">Handle Data hazards</a></h3>
+<ul>
+<li>Data hazard: instruction needs data from the result of a previous
+instruction still executing in pipeline</li>
+<li>Solution: Forward data if possible</li>
+</ul>
+<p><img src="./images/data-forwarding.png" alt="Data Forwarding" /> </p>
+<ul>
+<li>Load ALU Hazard</li>
+<li>Solution: Delay the next instruction (add bubble)</li>
+<li>Software Solution: Arrange the instructions while compiling to avoid hazard</li>
+</ul>
+<h2 id="control-hazard"><a class="header" href="#control-hazard">Control Hazard</a></h2>
+<ul>
+<li>Normal MIPS Pipeline
+<img src="./images/conventional-mips-pipeline.png" alt="Normal" /> </li>
+<li>Modern MIPS Pipeline
+<img src="./images/modern-mips-pipeline.png" alt="Modern" /> </li>
+</ul>
+<h3 id="four-branch-hazard-alternatives--1-stall-until-branch-direction-is"><a class="header" href="#four-branch-hazard-alternatives--1-stall-until-branch-direction-is">Four Branch Hazard Alternatives #### 1: Stall until branch direction is</a></h3>
+<p>clear #### 2: Predict Branch Not Taken</p>
+<ul>
+<li>Execute successor instructions in sequence</li>
+<li>&quot;Squash&quot; instructions in pipeline if branch actually taken</li>
+</ul>
+<h4 id="3-predict-branch-taken"><a class="header" href="#3-predict-branch-taken">3: Predict Branch Taken</a></h4>
+<ul>
+<li>But branch target address in is not known by IF stage</li>
+<li>Target is known at same time as branch outcome (IDstage)</li>
+<li>MIPS still incurs 1 cycle branch penalty</li>
+</ul>
+<h4 id="4-delayed-branch"><a class="header" href="#4-delayed-branch">4: Delayed Branch</a></h4>
+<ul>
+<li>Define branch to take place AFTER one instruction following the branch
+instruction</li>
+<li>1 slot delay allows proper decision and branch target address in 5 stage
+pipeline (MIPS uses this approach)</li>
+<li>Where to get instructions to fill branch delay slot?
+<img src="./images/filling-branch-delay-slot.png" alt="bds" /> </li>
+</ul>
+<h2 id="conditional-branches"><a class="header" href="#conditional-branches">Conditional Branches</a></h2>
+<ul>
+<li>When do you know you have a branch?
+<ul>
+<li>During ID cycle (Could you know before that?)</li>
+</ul>
+</li>
+<li>When do you know if the branch is Taken or Not-Taken
+<ul>
+<li>During EXE cycle/ ID stage depending on the design</li>
+</ul>
+</li>
+<li>We need for sophisticated solutions for following cases
+<ul>
+<li>Modern pipelines are deep ( 10 + stages)</li>
+<li>Several instructions issued/cycle</li>
+<li>Several predicted branches in-flight at the same time</li>
+</ul>
+</li>
+</ul>
+<h2 id="dynamic-branch-prediction"><a class="header" href="#dynamic-branch-prediction">Dynamic branch prediction</a></h2>
+<ul>
+<li>
+<p>Execution of a branch requires knowledge of:</p>
+</li>
+<li>
+<p>Branch instruction - encode whether instruction is a branch or not. Decide on
+taken or not taken (i.e., prediction can be done at IF stage)</p>
+</li>
+<li>
+<p>Whether the branch is Taken/Not-Taken (hence a branch prediction mechanism)</p>
+</li>
+<li>
+<p>If the branch is taken what is the target address (can be computed but can
+also be &quot;precomputed&quot;, i.e., stored in some table)</p>
+</li>
+<li>
+<p>If the branch is taken what is the instruction at the branch target address
+(saves the fetch cycle for that instruction)</p>
+</li>
+<li>
+<p>Use a <strong>Branch Prediction Buffer(BPB)</strong></p>
+<ul>
+<li>Also called Branch Prediction Table (BPT), Branch History Table (BHT)</li>
+<li>Records previous outcomes of the branch instruction</li>
+<li>How to index into the table is an issue</li>
+</ul>
+</li>
+<li>
+<p>A prediction using BPB is attempted when the branch instruction is fetched
+(IF stage or equivalent)</p>
+</li>
+<li>
+<p>It is acted upon during ID stage (when we know we have a branch)</p>
+</li>
+<li>
+<p>Has a prediction been made (Y/N)</p>
+<ul>
+<li>If not use default &quot;Not Taken&quot;</li>
+</ul>
+</li>
+<li>
+<p>Is it correct or incorrect ?</p>
+</li>
+<li>
+<p>Two cases:</p>
+<ul>
+<li>Case 1: Yes and the prediction was correct (known at ID stage) or No but
+the default was correct: No delay</li>
+<li>Case 2: Yes and the prediction was incorrect or No and the default was
+incorrect: Delay</li>
+</ul>
+</li>
+</ul>
+<h3 id="prediction-scheme-with-1-or-2-bit-fsm"><a class="header" href="#prediction-scheme-with-1-or-2-bit-fsm">Prediction Scheme with 1 or 2 bit FSM</a></h3>
+<p><img src="./images/prediction-1-bit.png" alt="prediction-1-bit" />
+<img src="./images/prediction-2-bit.png" alt="prediction-2-bit" /> </p>
+<ul>
+<li>The use of a 2-bit predictor will allow branches that favor taken (or not
+taken) to be mispredicted less often than the one-bit case. (reinforcement
+learning)</li>
+</ul>
+<h3 id="branch-prediction-in-hardware"><a class="header" href="#branch-prediction-in-hardware">Branch Prediction In Hardware</a></h3>
+<ul>
+<li>Branch prediction is extremely useful in loops.</li>
+<li>A simple branch prediction can be implemented using a small amount of memory
+indexed by lower order bits of the address of the branch instruction. (branch
+prediction buffer)</li>
+<li>One bit stores whether the branch was taken or not</li>
+<li>The next time the branch instruction is fetched refer this bit</li>
+</ul>
+<h3 id="advanced-branch-prediction-techniques"><a class="header" href="#advanced-branch-prediction-techniques">Advanced Branch Prediction Techniques</a></h3>
+<h4 id="basic-2-bit-predictor"><a class="header" href="#basic-2-bit-predictor">Basic 2-bit predictor:</a></h4>
+<ul>
+<li>For each branch:- Predict T or NT</li>
+<li>If the prediction is wrong for two consecutive times, change prediction</li>
+</ul>
+<h4 id="correlating-predictor"><a class="header" href="#correlating-predictor">Correlating predictor:</a></h4>
+<ul>
+<li>Multiple 2-bit predictors for each branch</li>
+<li>One for each possible combination of outcomes of preceding n branches</li>
+</ul>
+<pre><code>if(x==2)  /*br-1*/
+x=0;
+if(y==2)  /*br-2*/
+y=0;
+if(x!=y)  /*br-3*/
+    do this
+else do that
+</code></pre>
+<h4 id="local-predictor"><a class="header" href="#local-predictor">Local predictor</a></h4>
+<ul>
+<li>Multiple 2-bit predictors for each branch</li>
+<li>One for each possible combination of outcomes for the last n occurrences of this branch</li>
+</ul>
+<h4 id="tournament-predictor"><a class="header" href="#tournament-predictor">Tournament predictor</a></h4>
+<ul>
+<li>Combine correlating predictor with local predictor</li>
+</ul>
+<h2 id="branch-target-buffer"><a class="header" href="#branch-target-buffer">Branch-Target Buffer</a></h2>
+<ul>
+<li>To reduce the branch penalty, know whether the as-yet-un-decoded instruction is a branch. If so, what the next program counter (PC) should be</li>
+<li>If the instruction is a branch and we know what the next PC should be, we can have a branch penalty of zero</li>
+<li>A branch-prediction cache that stores the predicted address for the next instruction after a branch is called a branch-target buffer (BTB) or branch-target cache.
+<img src="./images/branch-target-buffer.png" alt="branch-target-buffer" /> 
+<img src="./images/branch-target-buffer-1.png" alt="branch-target-buffer-1" /> </li>
+</ul>
+<h2 id="branch-folding"><a class="header" href="#branch-folding">Branch Folding</a></h2>
+<ul>
+<li>Optimization on BTB to make zero cycle branch 
+<ul>
+<li>Larger branch-target buffer- store one or more target instructions</li>
+<li>Add target instruction into BTB to deal with longer decoding time required by larger buffer</li>
+<li>Branch folding can be used to obtain 0-cycle unconditional branches and sometimes 0-cycle conditional branches</li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
