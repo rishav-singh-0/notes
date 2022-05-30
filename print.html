@@ -1140,7 +1140,7 @@ address [SW R3,16(R4)]</li>
 </ul>
 </li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="pipeline-hazards"><a class="header" href="#pipeline-hazards">Pipeline Hazards</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pipeline-hazards"><a class="header" href="#pipeline-hazards">Pipeline Hazards</a></h1>
 <ul>
 <li>Hazards: circumstances that would cause incorrect execution if next
 instruction is fetched and executed</li>
@@ -1394,6 +1394,38 @@ else do that
 </ul>
 </li>
 </ul>
+<h1 id="questions"><a class="header" href="#questions">Questions</a></h1>
+<h2 id="example-1"><a class="header" href="#example-1">Example 1</a></h2>
+<p>Given a non-pipelined architecture running at 1.5 GHz, that takes 5 cycles to
+finish an instruction. You want to make it pipelined with 5 stages. Due to
+hardware overhead the pipelined design will operate only at 1 GHz. 5% of memory
+instructions cause a stall of 50 cycles, 30% of branch instruction cause a
+stall of 2 cycles and load-ALU combinations cause a stall of 1 cycle. Assume
+that in a given program, there exist 20% of branch instructions and 30% of
+memory instructions. 10% of instructions are load-ALU combinations. What is the
+speedup of pipelined design over the non-pipelined design?</p>
+<p>Ans:
+<img src="computer-architecture/./images/pipeline-hazards-solution1.png" alt="pipeline hazard soution 1" /> </p>
+<h2 id="example-2"><a class="header" href="#example-2">Example 2</a></h2>
+<p>A program has 2000 instructions in the sequence L.D, ADD.D, L.D, ADD.D,.....
+L.D, ADD.D. The ADD.D instruction depends on the L.D instruction right before
+it. The L.D instruction depends on the ADD.D instruction right before it. If
+the program is executed on the 5-stage pipeline what would be the actual CPI
+with and without operand forwarding technique?</p>
+<p>Ans:
+<img src="computer-architecture/./images/pipeline-hazards-solution2.1.png" alt="pipeline hazard soution 2" /> 
+<img src="computer-architecture/./images/pipeline-hazards-solution2.2.png" alt="pipeline hazard soution 2" /> </p>
+<h2 id="example-3-branch-prediction"><a class="header" href="#example-3-branch-prediction">Example 3: Branch Prediction</a></h2>
+<p>Consider the last 16 actual outcomes of a single static branch. T means branch
+is taken and N means not taken.</p>
+<p>{oldest&gt; TTNNTNTTTNTNTTNT &lt; latest}</p>
+<p>A two level branch predictor of (1,2) type is used. Since there is only one
+branch in the program indexing to BHT with PC is irrelevant. Hence only last
+branch outcome only is used to index to the BHT. How many mis-predictions are
+there and which of the branches in this sequence would be mis-predicted? Fill
+up the table for 16 branch outcomes.</p>
+<p>Ans:
+<img src="computer-architecture/./images/pipeline-hazards-solution3.png" alt="pipeline-hazards-solution3" /> </p>
 
                     </main>
 
