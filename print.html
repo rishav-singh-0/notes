@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li><li class="chapter-item expanded "><a href="computer-architecture/6.compiler-techniques.html"><strong aria-hidden="true">2.5.</strong> Compiler Techniques</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1426,6 +1426,168 @@ there and which of the branches in this sequence would be mis-predicted? Fill
 up the table for 16 branch outcomes.</p>
 <p>Ans:
 <img src="computer-architecture/./images/pipeline-hazards-solution3.png" alt="pipeline-hazards-solution3" /> </p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<ul>
+<li>
+<p>Pipelining overlaps execution of instructions
+Exploits Instruction Level Parallelism (ILP)</p>
+</li>
+<li>
+<p>There are two main approaches:</p>
+<ul>
+<li>Compiler-based static approaches</li>
+<li>Hardware-based dynamic approaches</li>
+</ul>
+</li>
+<li>
+<p>Exploiting ILP is to minimize CPI</p>
+<ul>
+<li>Pipeline CPI = Ideal (base) CPI + Structural stalls + Data hazard stalls +
+Control stalls</li>
+</ul>
+</li>
+</ul>
+<h2 id="parallelism-limitation-within-basic-block"><a class="header" href="#parallelism-limitation-within-basic-block">Parallelism limitation within Basic Block</a></h2>
+<ul>
+<li>The basic block- a straight-line code sequence without branches in except to
+the entry and no branches out except at the exit.</li>
+<li>Parallelism with basic block is limited. Typical size of basic block few
+instructions only. Must optimize across multiple blocks (branches)</li>
+</ul>
+<p><img src="computer-architecture/./images/parallelism-limitation.png" alt="Parallelism limitation within Basic Block" /></p>
+<h2 id="data-dependence"><a class="header" href="#data-dependence">Data Dependence</a></h2>
+<ul>
+<li>Loop-Level Parallelism
+<ul>
+<li>Unroll loop statically or dynamically</li>
+</ul>
+</li>
+<li>Challenges—&gt; Data dependency</li>
+<li>Data dependence conveys possibility of a hazard</li>
+<li>Dependent instructions cannot be executed simultaneously</li>
+<li>Pipeline determines if dependence is detected and if it causes a stall or not</li>
+<li>Data dependence conveys upper bound on exploitable instruction level
+parallelism</li>
+</ul>
+<h2 id="name-dependence--output-dependence"><a class="header" href="#name-dependence--output-dependence">Name Dependence &amp; Output dependence</a></h2>
+<ul>
+<li>Two instructions use the same name but no flow of information.</li>
+<li>Not a true data dependence, but is a problem when reordering instructions</li>
+<li><strong>Antidependence:</strong> instruction j writes a register or memory location that instruction i reads
+<ul>
+<li>Initial ordering (i before j) must be preserved</li>
+</ul>
+</li>
+<li><strong>Output dependence:</strong> instruction i and instruction j write the same register or memory location
+<ul>
+<li>Ordering must be preserved</li>
+</ul>
+</li>
+<li>To solve, use register renaming techniques</li>
+</ul>
+<h2 id="control-dependence"><a class="header" href="#control-dependence">Control Dependence</a></h2>
+<ul>
+<li>Ordering of instruction with respect to a branch instruction
+<ul>
+<li>Instruction that is control dependent on a branch cannot be moved <strong>before</strong>
+the branch so that its execution is no longer controller by the branch</li>
+<li>An instruction that is not control dependent on a branch cannot be moved
+<strong>after</strong> the branch so that its execution is controlled by the branch.
+<pre><code>if p1 {S1;};
+if p2 {S2;};
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Instruction that is control dependent on a branch cannot be moved <strong>before</strong> the
+branch so that its execution is no longer controller by the branch</li>
+<li>An instruction that is not control dependent on a branch cannot be moved
+<strong>after</strong> the branch so that its execution is controlled by the branch.
+<img src="computer-architecture/./images/control-dep-examples.png" alt="control dep examples" /> </li>
+</ul>
+<h2 id="compiler-techniques-for-exposing-ilp"><a class="header" href="#compiler-techniques-for-exposing-ilp">Compiler Techniques for Exposing ILP</a></h2>
+<ul>
+<li>Find and overlap sequence of unrelated instruction </li>
+<li>Pipeline scheduling
+<ul>
+<li>Separate dependent instruction from the source instruction by pipeline
+latency of the source instruction</li>
+</ul>
+<pre><code>Example:
+for (i=999; i&gt;=0; i=i-1)
+  x[i] = X[i] +s;
+</code></pre>
+<img src="computer-architecture/./images/compiler-techniques-table.png" alt="compiler techniques table" /></li>
+</ul>
+<p>MIPS Assembly code for above code:</p>
+<pre><code>loop:
+  L.D F0,0(R1)
+  stall
+  ADD.D F4,F0,F2
+  stall
+  stall
+  S.D F4,0(R1)
+  DADDUI R1,R1,#-8
+  stall (assume integer load latency is 1)
+  BNE R1,R2,Loop
+</code></pre>
+<p>Scheduled Code:</p>
+<pre><code>loop:
+  L.D FO,0(R1)
+  DADDUI R1,R1,#-8
+  ADD.D F4,F0,F2
+  stall
+  stall
+  S.D F4,8(R1)
+  BNE R1.R2.Loop
+</code></pre>
+<h2 id="loop-unrolling"><a class="header" href="#loop-unrolling">Loop Unrolling</a></h2>
+<p><img src="computer-architecture/./images/loop-unrollung.png" alt="loop unrollung" /></p>
+<h2 id="loop-unrolling--pipeline-scheduling"><a class="header" href="#loop-unrolling--pipeline-scheduling">Loop Unrolling / Pipeline Scheduling</a></h2>
+<p><img src="computer-architecture/./images/loop-unrollung-scheduling.png" alt="loop unrollung" /> </p>
+<h2 id="strip-mining"><a class="header" href="#strip-mining">Strip Mining</a></h2>
+<ul>
+<li>Unknown number of loop iterations?
+<ul>
+<li>Goal: make k copies of the loop body Number of iterations = n</li>
+<li>Generate pair of loops:
+<ul>
+<li>First executes n mod k times</li>
+<li>Second executes n / k times</li>
+<li>Strip mining</li>
+</ul>
+</li>
+<li>Example: Let n=35, k=4
+<ul>
+<li>Loop 1 execute 3 times</li>
+<li>Loop 2 execute 8 times by unrolling 4 copies per iteration</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="steps-in-loop-unrolling-and-scheduling"><a class="header" href="#steps-in-loop-unrolling-and-scheduling">Steps in Loop Unrolling and Scheduling</a></h2>
+<ul>
+<li>Determine that unrolling the loop would be useful.</li>
+<li>Identify independency of loop iterations.</li>
+<li>Use different registers to avoid unnecessary constraints put in on same
+computations.</li>
+<li>Eliminate the extra test and branch instructions and adjust the loop
+termination and iteration code.</li>
+<li>Determine whether the loads and stores from different iterations are
+independent.</li>
+<li>Schedule the code, preserving any dependences needed to yield the same result
+as the original code.</li>
+</ul>
+<h2 id="loop-unrolling--pipeline-scheduling-1"><a class="header" href="#loop-unrolling--pipeline-scheduling-1">Loop Unrolling &amp; Pipeline Scheduling</a></h2>
+<ul>
+<li>Limitations of loop unrolling:
+<ul>
+<li>Code size limitations — I-cache miss</li>
+<li>Compiler limitations — register pressure</li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
