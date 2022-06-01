@@ -1588,6 +1588,160 @@ as the original code.</li>
 </ul>
 </li>
 </ul>
+<h1 id="dynamic-scheduling"><a class="header" href="#dynamic-scheduling">Dynamic Scheduling</a></h1>
+<ul>
+<li>Rearrange execution order of instructions to reduce stalls while maintaining data flow.</li>
+<li>Advantages
+<ul>
+<li>Compiler doesn't need to have knowledge of micro-architecture</li>
+<li>Handles cases where dependencies are unknown at compile time</li>
+</ul>
+<pre><code>str R2, 8(R1)
+ld R3, 16(R4)
+// will access same location if 8+[R1] == 16+[R4]
+</code></pre>
+</li>
+<li>Disadvantages
+<ul>
+<li>Substantial increase in hardware complexity</li>
+<li>Complicates exceptions</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-dynamic-scheduling-works"><a class="header" href="#how-dynamic-scheduling-works">How dynamic scheduling works?</a></h2>
+<ul>
+<li>
+<p>Limitation of simple pipelining.</p>
+<ul>
+<li>In-order instruction issue and execution.</li>
+<li>Instructions are issued in program order.</li>
+<li>If an instruction is stalled in the pipeline, no later instructions can
+proceed.</li>
+</ul>
+<pre><code>add rl,r2,r3
+sub r4,rl,xr3
+and r6,rl,r7
+or r8,rl,r9
+</code></pre>
+</li>
+<li>
+<p>Limitation of simple pipelining.</p>
+<ul>
+<li>In-order instruction issue and execution.</li>
+<li>Instructions are issued in program order.</li>
+<li>If an instruction is stalled in the pipeline, no later instructions can
+proceed.</li>
+</ul>
+</li>
+<li>
+<p>If instruction j depends on a long-running instruction i, currently in
+execution in the pipeline, then all instructions after j must be stalled
+until i is finished and j can execute.</p>
+<pre><code>DIV.D FO,F2,F4
+ADD.D F10,FO,F8
+SUB.D F12.F8,F14
+</code></pre>
+</li>
+<li>
+<p>Separate the issue process into two parts:</p>
+<ul>
+<li>checking for any structural hazards.</li>
+<li>waiting for the absence of a data hazard</li>
+</ul>
+</li>
+<li>
+<p>Use in-order instruction issue but we want an instruction to begin execution
+as soon as its data operands are available.</p>
+</li>
+<li>
+<p>out-of-order execution - out-of-order completion.</p>
+</li>
+<li>
+<p>OOO execution introduces the possibility of WAR and WAW hazards</p>
+</li>
+</ul>
+<pre><code>DIV.D FO,F2,F4      // can have divide by zero exception
+ADD.D F6,FO0,F8
+SUB.D F8,F10,F14    // already completed before div instruction
+MUL.D F6,F10,F8
+</code></pre>
+<ul>
+<li>
+<p>WAR and WAW hazards — solved by register renaming</p>
+</li>
+<li>
+<p>Possibility of imprecise exception (2 possibilities).</p>
+<ul>
+<li>The pipeline may have already completed instructions that are later in
+program order than the instruction causing the exception.</li>
+<li>The pipeline may have not yet completed some instructions that are earlier
+in program order than the instruction causing the exception</li>
+</ul>
+</li>
+<li>
+<p>To allow out-of-order execution, split the ID stage into two</p>
+<ul>
+<li>Issue-Decode instructions, check for structural hazards.</li>
+<li>Read operands-Wait until no data hazards, then read operands.</li>
+</ul>
+</li>
+<li>
+<p>In a dynamically scheduled pipeline, all instructions pass through the issue
+stage in order (in-order issue); however, they can be stalled or bypass each
+other in the second stage (read operands) and thus enter execution out of
+order.</p>
+</li>
+<li>
+<p>Done by - score boarding technique</p>
+</li>
+<li>
+<p>Approach used - Tomasulo’s algorithm</p>
+</li>
+</ul>
+<h2 id="register-renaming"><a class="header" href="#register-renaming">Register Renaming</a></h2>
+<p><img src="computer-architecture/./images/register-renaming.png" alt="Register Renaming" /> </p>
+<ul>
+<li>Register renaming is done by reservation stations (RS)</li>
+<li>Each RS Contains:
+<ul>
+<li>The instruction (operation to be done)</li>
+<li>Buffered operand values (when available)</li>
+<li>Reservation station number of instruction providing the operand values</li>
+</ul>
+</li>
+<li>RS fetches and buffers an operand as soon as it becomes available (not
+necessarily involving register file)</li>
+<li>Pending instructions designate the RS that will provide input</li>
+<li>Result values broadcast on common data bus (CDB)</li>
+</ul>
+<h2 id="tomasulos-algorithm"><a class="header" href="#tomasulos-algorithm">Tomasulo's Algorithm</a></h2>
+<ul>
+<li>Load and store buffers contain data and addresses.</li>
+<li>They also act as RS</li>
+</ul>
+<h3 id="issue"><a class="header" href="#issue">Issue</a></h3>
+<ul>
+<li>Get next instruction from FIFO queue</li>
+<li>If RS available, issue the instruction to the RS with operand values if
+available</li>
+<li>If operand values not available, stall the instruction</li>
+</ul>
+<h3 id="execute"><a class="header" href="#execute">Execute</a></h3>
+<ul>
+<li>When operand becomes available, store it in any reservation stations waiting
+for it</li>
+<li>When all operands are ready, execute the instruction</li>
+<li>Loads and store uses buffers</li>
+<li>No instruction will initiate execution until all branches that precede it in
+program order have completed</li>
+</ul>
+<h3 id="write-result"><a class="header" href="#write-result">Write result</a></h3>
+<ul>
+<li>Write result into CDB (there by it reaches the reservation station, store
+buffer and registers file) with name of execution unit that generated the
+result.</li>
+<li>Stores must wait until address and value are received</li>
+</ul>
 
                     </main>
 
