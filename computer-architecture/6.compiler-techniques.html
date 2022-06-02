@@ -422,11 +422,12 @@ necessarily involving register file)</li>
 <li>Pending instructions designate the RS that will provide input</li>
 <li>Result values broadcast on common data bus (CDB)</li>
 </ul>
-<h2 id="tomasulos-algorithm"><a class="header" href="#tomasulos-algorithm">Tomasulo's Algorithm</a></h2>
+<h1 id="tomasulos-algorithm"><a class="header" href="#tomasulos-algorithm">Tomasulo's Algorithm</a></h1>
 <ul>
 <li>Load and store buffers contain data and addresses.</li>
 <li>They also act as RS</li>
 </ul>
+<p><img src="./images/tomasulo-algorithm.png" alt="Tomasulo’s algorithm" /> </p>
 <h3 id="issue"><a class="header" href="#issue">Issue</a></h3>
 <ul>
 <li>Get next instruction from FIFO queue</li>
@@ -445,10 +446,79 @@ program order have completed</li>
 </ul>
 <h3 id="write-result"><a class="header" href="#write-result">Write result</a></h3>
 <ul>
-<li>Write result into CDB (there by it reaches the reservation station, store
+<li>
+<p>Write result into CDB (there by it reaches the reservation station, store
 buffer and registers file) with name of execution unit that generated the
-result.</li>
-<li>Stores must wait until address and value are received</li>
+result.</p>
+</li>
+<li>
+<p>Stores must wait until address and value are received</p>
+</li>
+<li>
+<p>Instructions are fetched one by one and decoded to find the type of operation
+and the source of operands</p>
+</li>
+<li>
+<p>Register Status Indicator indicates whether the latest value of the register
+is in the reg file or currently being computed by some execution unit and if
+so, it states the execution unit number</p>
+</li>
+<li>
+<p>If all operands available then operation proceeds in the allotted execution
+unit, else, it waits in the reservation station of the allotted execution
+unit pinging the CDB</p>
+</li>
+<li>
+<p>Every Execution unit writes the result along with the unit number on to the
+CDB which is forwarded to all reservation stations, Reg-file and Memory</p>
+</li>
+</ul>
+<p><img src="./images/tomasulo-algorythm-1.png" alt="Tomasulo’s algorithm" /> </p>
+<h2 id="reservation-station"><a class="header" href="#reservation-station">Reservation Station</a></h2>
+<ul>
+<li>
+<p>Each reservation station has seven fields.</p>
+</li>
+<li>
+<p>{Op, Qj, Qk, Vj, Vk, A, Busy}</p>
+</li>
+<li>
+<ol>
+<li>Op -The operation to perform on source operands S1 and S2.</li>
+</ol>
+</li>
+<li>
+<p>2,3. Qj, Qk -The reservation stations that will produce the corresponding
+source operand; a value of zero indicates that the source operand is already
+available in Vj or VK.</p>
+</li>
+<li>
+<p>4,5. Vj, Vk —The value of the source operands.
+Only one of the V field or the Q field is valid for each operand. For loads,
+the VK field is used to hold the offset field.</p>
+</li>
+<li>
+<ol start="6">
+<li>A -Used to hold information for the memory address calculation for a load
+or store. Initially, the immediate field of the instruction is stored
+here; after the address calculation, the effective address is stored here.</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>Busy -Indicates that this reservation station and its accompanying
+functional unit are occupied.</li>
+</ol>
+</li>
+</ul>
+<h2 id="reservation-station-indicator"><a class="header" href="#reservation-station-indicator">Reservation Station Indicator</a></h2>
+<ul>
+<li>The register file has a field, Qi: (RSI)</li>
+<li>Qi-The number of the reservation station that contains the operation whose
+result should be stored into this register.</li>
+<li>If the value of Qi = 0 no currently active instruction is computing a result
+destined for this register, meaning that the value is simply the register
+contents.</li>
 </ul>
 
                     </main>
