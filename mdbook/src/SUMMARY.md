@@ -17,5 +17,8 @@
   - [Pipeline Hazards](./computer-architecture/4.pipeline-hazards.md)
   - [Compiler Techniques](./computer-architecture/6.compiler-techniques.md)
 
+- [Interview Questions](./questions/Readme.md)
+  - [C++](./questions/cpp.md)
+  - [Summer DSA Plan](./questions/summer-dsa-plan.md)
 
 
