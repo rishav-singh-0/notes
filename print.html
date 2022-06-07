@@ -1813,7 +1813,35 @@ destined for this register, meaning that the value is simply the register
 contents.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interview-questions"><a class="header" href="#interview-questions">Interview Questions</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="c"><a class="header" href="#c">C++</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="c-interview-questions"><a class="header" href="#c-interview-questions">C++ Interview Questions</a></h1>
+<ol>
+<li>What is the value of 'x' ?</li>
+</ol>
+<pre><code>int x=10;
+sizeof(x++);
+cout&lt;&lt;x;
+</code></pre>
+<p>Ans: 10, because sizeof() computes at compile time, so x++ never executes</p>
+<ol start="2">
+<li>auto, static, register, mutable, extern initialize with 0 (global scope
+variables are also initialized with 0) </li>
+<li>Type Conversion:</li>
+</ol>
+<pre><code>bool -&gt; char -&gt; short int -&gt; int -&gt; unsigned int -&gt; long -&gt; unsigned long -&gt; long long -&gt; float -&gt; double -&gt; long double
+1    -&gt; 1    -&gt; 2         -&gt; 4   -&gt; 4            -&gt; 8    -&gt; 8             -&gt; 8         -&gt; 4     -&gt; 8      -&gt; 12 bytes
+</code></pre>
+<ol start="4">
+<li>Difference between <code>endl</code> and <code>&quot;\n&quot;</code></li>
+</ol>
+<ul>
+<li><code>endl</code> flushes the buffer so it is slower than <code>\n</code></li>
+</ul>
+<ol start="5">
+<li>use of <code>getline</code></li>
+</ol>
+<ul>
+<li><code>getline(cin, variable_name)</code> to store whole line in &quot;variable_name&quot;, input could be separated with spaces</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="summer-vacation-dsa-problem-sheet"><a class="header" href="#summer-vacation-dsa-problem-sheet">SUMMER VACATION DSA PROBLEM SHEET</a></h1>
 <h2 id="arrays-5-days"><a class="header" href="#arrays-5-days">Arrays (5 days)</a></h2>
 <h3 id="array-basics-2-days"><a class="header" href="#array-basics-2-days">Array Basics (2 days)</a></h3>
