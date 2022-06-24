@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li><li class="chapter-item expanded "><a href="../computer-architecture/6.compiler-techniques.html"><strong aria-hidden="true">2.5.</strong> Compiler Techniques</a></li></ol></li><li class="chapter-item expanded "><a href="../questions/index.html"><strong aria-hidden="true">3.</strong> Interview Questions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../questions/cpp.html" class="active"><strong aria-hidden="true">3.1.</strong> C++</a></li><li class="chapter-item expanded "><a href="../questions/summer-dsa-plan.html"><strong aria-hidden="true">3.2.</strong> Summer DSA Plan</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.</strong> Microprocessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="../microprocessors/index.html"><strong aria-hidden="true">1.2.</strong> 8086 Microprocessor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../microprocessors/architecture.html"><strong aria-hidden="true">1.2.1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../microprocessors/addressing-modes.html"><strong aria-hidden="true">1.2.2.</strong> Addressing Modes</a></li><li class="chapter-item expanded "><a href="../microprocessors/registors-and-flags.html"><strong aria-hidden="true">1.2.3.</strong> Registers and Flags</a></li><li class="chapter-item expanded "><a href="../microprocessors/memory-segmentation.html"><strong aria-hidden="true">1.2.4.</strong> Memory Segmentation</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../computer-architecture/index.html"><strong aria-hidden="true">2.</strong> Computer Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../computer-architecture/1.intro.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../computer-architecture/2.performance-measurement.html"><strong aria-hidden="true">2.2.</strong> Performance Measurement</a></li><li class="chapter-item expanded "><a href="../computer-architecture/3.intro-to-risc.html"><strong aria-hidden="true">2.3.</strong> Intro to RISC</a></li><li class="chapter-item expanded "><a href="../computer-architecture/4.pipeline-hazards.html"><strong aria-hidden="true">2.4.</strong> Pipeline Hazards</a></li><li class="chapter-item expanded "><a href="../computer-architecture/6.compiler-techniques.html"><strong aria-hidden="true">2.5.</strong> Compiler Techniques</a></li></ol></li><li class="chapter-item expanded "><a href="../questions/index.html"><strong aria-hidden="true">3.</strong> Interview Questions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../questions/cpp.html" class="active"><strong aria-hidden="true">3.1.</strong> C++</a></li><li class="chapter-item expanded "><a href="../questions/linux.html"><strong aria-hidden="true">3.2.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../questions/summer-dsa-plan.html"><strong aria-hidden="true">3.3.</strong> Summer DSA Plan</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,6 +163,22 @@ variables are also initialized with 0) </li>
 <ul>
 <li><code>getline(cin, variable_name)</code> to store whole line in &quot;variable_name&quot;, input could be separated with spaces</li>
 </ul>
+<ol start="6">
+<li><code>x++</code> and <code>++x</code></li>
+</ol>
+<ul>
+<li><code>y = x++</code> ==&gt; <code>y=x; x=x+1;</code></li>
+<li><code>y = ++x</code> ==&gt; <code>x=x+1; y=x;</code> (y gets updated value of x)</li>
+</ul>
+<ol start="7">
+<li>Use of variable arguments in function</li>
+</ol>
+<ul>
+<li>Usage of ... in function argument: This spread operator is the indication of declaring the function as accepting variable arguments.</li>
+<li>va_list: Stores the list of variable arguments recieved.</li>
+<li>va_arg: Retrieves the next value in the va_list with the type passed as the parameter.</li>
+<li>va_end: Clean up the argument list.</li>
+</ul>
 
                     </main>
 
@@ -171,7 +187,7 @@ variables are also initialized with 0) </li>
                             <a rel="prev" href="../questions/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../questions/summer-dsa-plan.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../questions/linux.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -183,7 +199,7 @@ variables are also initialized with 0) </li>
                     <a rel="prev" href="../questions/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../questions/summer-dsa-plan.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../questions/linux.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
