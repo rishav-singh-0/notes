@@ -19,6 +19,7 @@
 
 - [Interview Questions](./questions/Readme.md)
   - [C++](./questions/cpp.md)
+  - [Linux](./questions/linux.md)
   - [Summer DSA Plan](./questions/summer-dsa-plan.md)
 
 
