@@ -17,6 +17,15 @@
   - [Pipeline Hazards](./computer-architecture/4.pipeline-hazards.md)
   - [Compiler Techniques](./computer-architecture/6.compiler-techniques.md)
 
+- [Verilog](./verilog/1_vlsi_design.md)
+  - [Vlsi Design](./verilog/1_vlsi_design.md)
+  - [Data Types](./verilog/2_data_types.md)
+  - [Operators](./verilog/3_operators.md)
+  - [Compiler Directives](./verilog/4_compiler_directives.md)
+  - [Assigments](./verilog/5_assigments.md)
+  - [FSM](./verilog/6_fsm.md)
+  - [Synthesis](./verilog/7_synthesis.md)
+
 - [Interview Questions](./questions/Readme.md)
   - [C++](./questions/cpp.md)
   - [Linux](./questions/linux.md)
