@@ -1908,14 +1908,15 @@ contents.</li>
 <ul>
 <li>Strongest signal prevails</li>
 <li>Useful for switch level modelling and not for RTL</li>
-<li>When two signals with opposite value and same
-strength combine, the resulting value is x</li>
+<li>When two signals with opposite value and same strength combine, the
+resulting value is x</li>
 </ul>
 </li>
 </ul>
 <p>By default every variable will have 'x' value.
 In case of tristate buffer it will have high impedance 'z'.</p>
-<p>Strength levels are used in switch level modeling using cmos for building the circuit and not used for rtl.</p>
+<p>Strength levels are used in switch level modeling using cmos for building the
+circuit and not used for rtl.</p>
 <h2 id="numbers"><a class="header" href="#numbers">Numbers</a></h2>
 <pre><code>&lt;size&gt;'&lt;base&gt;&lt;number&gt;
 </code></pre>
@@ -1934,203 +1935,240 @@ In case of tristate buffer it will have high impedance 'z'.</p>
 </li>
 <li>
 <p><code>12'o43xz</code> will be expanded like: </p>
-<pre><code>4    3    x    z 
-</code></pre>
 </li>
 </ul>
-<p>100  011  xxx  zzz</p>
-<pre><code>
-- Underscores improve readability
-eg. `32’h a_bc_2` is the same as `32’b 1010_1011_1100_0010`
-
-- Zero, X and Z extension
-- `4'b1` is the same as `4'b 0001`
-- `4'bx1` is the sameas `4'b xxx1`
-- `4'bz1` s the same as `4'b zzzl`
-
-- Unsized numbers will have by default 32 bit
-- `'h4a` is the same as `32'b 0000_0000_0100_1010`
-
-## NET and REG
-Data types in Verilog are divided into NETS and Registers.
-
-### Nets - (net Data Type)
-
-The nets variables represent the physical connection between structural
+<pre><code>  4    3    x    z 
+ 100  011  xxx  zzz
+</code></pre>
+<ul>
+<li>
+<p>Underscores improve readability
+eg. <code>32’h a_bc_2</code> is the same as <code>32’b 1010_1011_1100_0010</code></p>
+</li>
+<li>
+<p>Zero, X and Z extension</p>
+<ul>
+<li><code>4'b1</code> is the same as <code>4'b 0001</code></li>
+<li><code>4'bx1</code> is the sameas <code>4'b xxx1</code></li>
+<li><code>4'bz1</code> s the same as <code>4'b zzzl</code></li>
+</ul>
+</li>
+<li>
+<p>Unsized numbers will have by default 32 bit</p>
+<ul>
+<li><code>'h4a</code> is the same as <code>32'b 0000_0000_0100_1010</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="net-and-reg"><a class="header" href="#net-and-reg">NET and REG</a></h2>
+<p>Data types in Verilog are divided into NETS and Registers.</p>
+<h3 id="nets---net-data-type"><a class="header" href="#nets---net-data-type">Nets - (net Data Type)</a></h3>
+<p>The nets variables represent the physical connection between structural
 entities. These variables do not store values (except trireg); have the value
 of their drivers which changes continuously by the driving circuit. Some net
 data types are wire, tri, wor, trior, wand, triand, tri0, tri1, supply0,
 supply1 and trireg. wire is the most frequently used type.
-A net data type must be used when a signal is:
-- driven by the output of some device
-- declared as an input or in-out port
-- on the left-hand side of a continuous assignment
-
-Declaration and Assignment:
+A net data type must be used when a signal is:</p>
+<ul>
+<li>driven by the output of some device</li>
+<li>declared as an input or in-out port</li>
+<li>on the left-hand side of a continuous assignment</li>
+</ul>
+<p>Declaration and Assignment:</p>
+<pre><code>wire A, B, C
+assign C = A &amp; B
 </code></pre>
-<p>wire A, B, C
-assign C = A &amp; B</p>
-<pre><code>
-By default all the ports are wire datatype
-
-- Nets are continuously driven by combinational logic
-
-### Regs - (reg Data Type)
-
-The register variables are used in procedural blocks which store values from
+<p>By default all the ports are wire datatype</p>
+<ul>
+<li>Nets are continuously driven by combinational logic</li>
+</ul>
+<h3 id="regs---reg-data-type"><a class="header" href="#regs---reg-data-type">Regs - (reg Data Type)</a></h3>
+<p>The register variables are used in procedural blocks which store values from
 one assignment to the next. An assignment statement in a procedure acts as a
 trigger that changes the value of the data storage element. Some register data
-types are: reg, integer, time and real.
+types are: reg, integer, time and real.</p>
+<p><strong>Reg</strong> is used for describing logic, <strong>integer</strong> for loop variables and
+calculations, <strong>real</strong> in system modules, and <strong>time</strong> and <strong>realtime</strong> for
+storing simulation times in test benches.</p>
+<ul>
+<li>Using <strong>reg</strong> does not means we will get physical hardware Registers. It depends on coding style not on the datatype.</li>
+<li>Assignments — Registers and nets can be mixed</li>
+</ul>
+<h3 id="port-assignments"><a class="header" href="#port-assignments">Port Assignments</a></h3>
+<ul>
+<li>Input, Output and Inout - by default are wire datatype</li>
+</ul>
+<p><img src="verilog/" alt="image" /></p>
+<h2 id="integers-data-type"><a class="header" href="#integers-data-type">Integers Data Type</a></h2>
+<ul>
+<li>Integers store values as signed quantities</li>
+<li>Mostly synthesizable</li>
+<li>Arithmetic operations performed on integer variables produces 2's compliment result</li>
+<li>Procedural assignments shall be used to trigger value changes in integers</li>
+</ul>
+<h2 id="real-data-type"><a class="header" href="#real-data-type">Real Data Type</a></h2>
+<ul>
+<li>
+<p>Allows decimal and scientific notation</p>
+</li>
+<li>
+<p>Example: <code>0.210, 3.1415, 4.6e-2, -2.5</code></p>
+</li>
+<li>
+<p>Not synthesizable</p>
+</li>
+<li>
+<p>Declaration and Assignment:</p>
+<pre><code>real real_num;
+integer int_num;
 
-**Reg** is used for describing logic, **integer** for loop variables and
-calculations, **real** in system modules, and **time** and **realtime** for
-storing simulation times in test benches.
-
-- Using **reg** does not means we will get physical hardware Registers. It depends on coding style not on the datatype.
-- Assignments — Registers and nets can be mixed
-
-### Port Assignments
-- Input, Output and Inout - by default are wire datatype
-
-![image]()
-
-## Integers Data Type
-
-- Integers store values as signed quantities
-- Mostly synthesizable
-- Arithmetic operations performed on integer variables produces 2's compliment result
-- Procedural assignments shall be used to trigger value changes in integers
-
-## Real Data Type
-
-- Allows decimal and scientific notation
-- Example: `0.210, 3.1415, 4.6e-2, -2.5`
-- Not synthesizable
-- Declaration and Assignment:
-
+real_num = 67.9
+int_num = real_num;   &lt;-- will roundoff to 68
 </code></pre>
-<p>real real_num;
-integer int_num;</p>
-<p>real_num = 67.9
-int_num = real_num;   &lt;-- will roundoff to 68</p>
-<pre><code>
-## Time Data Type
-
-- For storing and manipulating simulation time quantities
-- Not synthesizable, useful for testbench implementation
-- Declaration and Assignment:
+</li>
+</ul>
+<h2 id="time-data-type"><a class="header" href="#time-data-type">Time Data Type</a></h2>
+<ul>
+<li>
+<p>For storing and manipulating simulation time quantities</p>
+</li>
+<li>
+<p>Not synthesizable, useful for testbench implementation</p>
+</li>
+<li>
+<p>Declaration and Assignment:</p>
+<pre><code>time sim_time;
+sim_time = $time;   &lt;-- current simulation time will be assigned to variable sim_time
 </code></pre>
-<p>time sim_time;
-sim_time = $time;   &lt;-- current simulation time will be assigned to variable sim_time</p>
-<pre><code>
-- The time variables behave same as a reg of at least 64 bits, with the least significant bit being bit 0
-- The time variables are unsigned quantities, and unsigned arithmetic is performed on them
-
-
-## Vectors
-
-- Represent Buses
-- Slices - range direction must be same as vector
-
-For example: 
-- `reg [3:0] z_bus;` where `z_bus[3]`=MSB and `z_bus[0]`=LSB
-
-Scalar Array is an array of one 1-bit data type. Ex – reg a[3:0] - This is an
+</li>
+<li>
+<p>The time variables behave same as a reg of at least 64 bits, with the least significant bit being bit 0</p>
+</li>
+<li>
+<p>The time variables are unsigned quantities, and unsigned arithmetic is performed on them</p>
+</li>
+</ul>
+<h2 id="vectors"><a class="header" href="#vectors">Vectors</a></h2>
+<ul>
+<li>Represent Buses</li>
+<li>Slices - range direction must be same as vector</li>
+</ul>
+<p>For example: </p>
+<ul>
+<li><code>reg [3:0] z_bus;</code> where <code>z_bus[3]</code>=MSB and <code>z_bus[0]</code>=LSB</li>
+</ul>
+<p>Scalar Array is an array of one 1-bit data type. Ex – reg a[3:0] - This is an
 array of size 4 and where each element can hold 1-bit data. Vector Array is an
 array of vectors. As we have seen earlier vectors are nothing but a group of
 1-bit data types combined to increase the size of data type. Ex – reg [3:0] a
-[7:0] - This is an array of size 8, where each element can hold 4-bit reg data.
+[7:0] - This is an array of size 8, where each element can hold 4-bit reg data.</p>
+<h2 id="arrays"><a class="header" href="#arrays">Arrays</a></h2>
+<ul>
+<li>
+<p>Arrays for variables types (reg, integer, time,real,realtime) are possible.</p>
+</li>
+<li>
+<p>Net Arrays:</p>
+</li>
+</ul>
+<pre><code>  reg my_reg [0:5];        // Declares an array of 6, 1 bit registers
+  my_reg[2] = 1'b1;        //Assigns value 1 to the 3rd element of array
 
+  reg arrayb [7:0] [0:255]; // Declares a two dimensional array of
+                            // one bit registers
+  arrayb[1][0] = 0;         // Assigns 0 to the bit referenced by indices [1] [0]
 
-## Arrays
+  wire w_array [7:0] [5:0]; // Declares a two dimensional array of wires
 
-- Arrays for variables types (reg, integer, time,real,realtime) are possible.
-
-- Net Arrays:
-
+  integer inta[1:64];       // Declares an array of 64 integer values
 </code></pre>
-<p>reg my_reg [0:5];        // Declares an array of 6, 1 bit registers
-my_reg[2] = 1'b1;        //Assigns value 1 to the 3rd element of array</p>
-<p>reg arrayb [7:0] [0:255]; // Declares a two dimensional array of
-// one bit registers
-arrayb[1][0] = 0;         // Assigns 0 to the bit referenced by indices [1] [0]</p>
-<p>wire w_array [7:0] [5:0]; // Declares a two dimensional array of wires</p>
-<p>integer inta[1:64];       // Declares an array of 64 integer values</p>
-<pre><code>
+<pre><code>  reg [1:n] rega;    //n bit register (vector)
+
+  reg rega [1:n];    //array of n, 1 bit registers
 </code></pre>
-<p>reg [1:n] rega;    //n bit register (vector)</p>
-<p>reg rega [1:n];    //array of n, 1 bit registers</p>
-<pre><code>
-- Horizontal = vector, Vertical = array
-
-
-## Memory
-
-- A one dimensional array with elements of type reg
-- Used to model ROMs, RAM, and reg files
+<ul>
+<li>Horizontal = vector, Vertical = array</li>
+</ul>
+<h2 id="memory"><a class="header" href="#memory">Memory</a></h2>
+<ul>
+<li>A one dimensional array with elements of type reg</li>
+<li>Used to model ROMs, RAM, and reg files</li>
+</ul>
+<pre><code>  reg [7:0] mema [0:255]; // declares a memory mema of 256 8-bit
+                          // registers. The indices are 0 to 255
+  mema[1] = 0
 </code></pre>
-<p>reg [7:0] mema [0:255]; // declares a memory mema of 256 8-bit
-// registers. The indices are 0 to 255
-mema[1] = 0</p>
-<pre><code>- An n-bit reg can be assigned a value in a single assignment, but a complete memory cannot.
-- Use for loop to initialize the whole memory
+<ul>
+<li>An n-bit reg can be assigned a value in a single assignment, but a complete memory cannot.</li>
+<li>Use for loop to initialize the whole memory</li>
+</ul>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
+<ul>
+<li>Parameters are not variables, they are constants</li>
+</ul>
+<pre><code>module ram (clk,rst,din,radd,wadd,dout);
 
-## Parameters
+  parameter dt_width = 8; // Defines dt width as a constant value 8
+  parameter ad_depth = 256; // Defines ad depth as a constant value 256
 
-- Parameters are not variables, they are constants
+  ...
+  reg [(dt_width - 1) : 0] mem [(ad_depth - 1) : 0];
+    // Declaring a 256X8 memory using parameters
+  ...
+
+endmodule
 </code></pre>
-<p>module ram (clk,rst,din,radd,wadd,dout);</p>
-<p>parameter dt_width = 8; // Defines dt width as a constant value 8
-parameter ad_depth = 256; // Defines ad depth as a constant value 256</p>
-<p>...
-reg [(dt_width - 1) : 0] mem [(ad_depth - 1) : 0];
-// Declaring a 256X8 memory using parameters
-...</p>
-<p>endmodule</p>
-<pre><code>
-- The parameter override values have to be contiguous, that is any parameter cannot be skipped during override
-- Overriding a module's parameter values during initialization
+<ul>
+<li>The parameter override values have to be contiguous, that is any parameter cannot be skipped during override</li>
+<li>Overriding a module's parameter values during initialization</li>
+</ul>
+<pre><code>module ram (clk,rst,din, radd wadd,dout) ;
+  parameter dt_width = 8;
+  parameter ad_depth = 256;
+  ...
+  reg [(dt_width - 1):0] mem [(ad_depth-1):0];
+  ...
+endmodule
 
+//Assignment by ordered list
+
+module system(...);
+  input  rst,clk;
+  output dout, done;
+
+  //Overriding dt_width only
+    ram #( 16 ) MEM1 (.clk(clk),.rst(rst),...);
+
+  //Overriding both dt_width and ad_depth
+    ram #( 16, 512) MEM2 (.clk(clk),.rst(rst),...):
+
+endmodule
+
+// Assignment by name
+
+module system(...);
+  input rstrclks 5
+  output dout, done;
+
+  //Overriding dt_width only
+  ram #( .dt_width(16) ) MEM1 (.clk(clk),.rst(rst),...):
+  
+  //Overriding ad_depth only
+  ram #( .ad_depth(512) ) MEM2 (.clk(clk),.rst(rst),...):
+
+  //Overriding both dt_width and ad_depth
+  ram #(.dt_width(16), .ad_depth(1024) ) MEM3 (.clk(clk),...):
+
+endmodule
 </code></pre>
-<p>module ram (clk,rst,din, radd wadd,dout) ;
-parameter dt_width = 8;
-parameter ad_depth = 256;
-...
-reg [(dt_width - 1):0] mem [(ad_depth-1):0];
-...
-endmodule</p>
-<p>//Assignment by ordered list</p>
-<p>module system(...);
-input  rst,clk;
-output dout, done;</p>
-<p>//Overriding dt_width only
-ram #( 16 ) MEM1 (.clk(clk),.rst(rst),...);</p>
-<p>//Overriding both dt_width and ad_depth
-ram #( 16, 512) MEM2 (.clk(clk),.rst(rst),...):</p>
-<p>endmodule</p>
-<p>// Assignment by name</p>
-<p>module system(...);
-input rstrclks 5
-output dout, done;</p>
-<p>//Overriding dt_width only
-ram #( .dt_width(16) ) MEM1 (.clk(clk),.rst(rst),...):</p>
-<p>//Overriding ad_depth only
-ram #( .ad_depth(512) ) MEM2 (.clk(clk),.rst(rst),...):</p>
-<p>//Overriding both dt_width and ad_depth
-ram #(.dt_width(16), .ad_depth(1024) ) MEM3 (.clk(clk),...):</p>
-<p>endmodule</p>
-<pre><code>
-
-## String 
-
-- A string is a sequence of characters enclosed by double quotes (&quot;&quot;) and contained on a single line
-- 8-bit ASCII value represents one character
-
-</code></pre>
-<p>reg [8<em>12:1] string_reg;
-// 13 characters requires a 8</em>12, or 96 bits wide reg
-string_reg=&quot;Some text...&quot;;</p>
-<pre><code>
+<h2 id="string"><a class="header" href="#string">String</a></h2>
+<ul>
+<li>A string is a sequence of characters enclosed by double quotes (&quot;&quot;) and contained on a single line</li>
+<li>8-bit ASCII value represents one character</li>
+</ul>
+<pre><code>reg [8*12:1] string_reg;
+  // 13 characters requires a 8*12, or 96 bits wide reg
+string_reg=&quot;Some text...&quot;;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
 <h2 id="logical-operators"><a class="header" href="#logical-operators">Logical Operators</a></h2>
@@ -2794,6 +2832,82 @@ variables are also initialized with 0) </li>
 <li>va_arg: Retrieves the next value in the va_list with the type passed as the parameter.</li>
 <li>va_end: Clean up the argument list.</li>
 </ul>
+<p>What are the differences between C and C++? </p>
+<ol>
+<li>C++ is a kind of superset of C, most of C programs except few exceptions (See this and this) work in C++ as well. </li>
+<li>C is a procedural programming language, but C++ supports both procedural and Object Oriented programming. </li>
+<li>Since C++ supports object oriented programming, it supports features like function overloading, templates, inheritance, virtual functions, friend functions. These features are absent in C. </li>
+<li>C++ supports exception handling at a language level, in C exception handling, is done in the traditional if-else style. </li>
+<li>C++ supports references, C doesn't. </li>
+<li>In C, scanf() and printf() are mainly used input/output. C++ mainly uses streams to perform input and output operations. cin is standard input stream and cout is standard output stream.</li>
+</ol>
+<p>There are many more differences, above is a list of main differences. </p>
+<p>What are the differences between references and pointers? </p>
+<ul>
+<li>Both references and pointers can be used to change the local variables of one
+function inside another function. Both of them can also be used to save
+copying of big objects when passed as arguments to functions or returned from
+functions, to get efficiency gain. 
+Despite the above similarities, there are the following differences between
+references and pointers.</li>
+</ul>
+<p>References are less powerful than pointers </p>
+<ol>
+<li>Once a reference is created, it cannot be later made to reference another
+object; it cannot be reseated. This is often done with pointers. </li>
+<li>References cannot be NULL. Pointers are often made NULL to indicate that
+they are not pointing to any valid thing. </li>
+<li>A reference must be initialized when declared. There is no such restriction
+with pointers</li>
+</ol>
+<p>Due to the above limitations, references in C++ cannot be used for implementing
+data structures like Linked List, Tree, etc. In Java, references don’t have the
+above restrictions and can be used to implement all data structures. References
+being more powerful in Java is the main reason Java doesn’t need pointers.
+References are safer and easier to use: </p>
+<ol>
+<li>Safer: Since references must be initialized, wild references like wild pointers are unlikely to exist. It is still possible to have references that don’t refer to a valid location (See questions 5 and 6 in the below exercise ) </li>
+<li>Easier to use: References don’t need dereferencing operator to access the value. They can be used like normal variables. ‘&amp;’ operator is needed only at the time of declaration. Also, members of an object reference can be accessed with dot operator (‘.’), unlike pointers where arrow operator (-&gt;) is needed to access members.</li>
+</ol>
+<p>What are virtual functions - Write an example? 
+Virtual functions are used with inheritance, they are called according to the type of the object pointed or referred to, not according to the type of pointer or reference. In other words, virtual functions are resolved late, at runtime. The virtual keyword is used to make a function virtual.</p>
+<p>Following things are necessary to write a C++ program with runtime polymorphism (use of virtual functions) </p>
+<ol>
+<li>A base class and a derived class. </li>
+<li>A function with the same name in a base class and derived class. </li>
+<li>A pointer or reference of base class type pointing or referring to an object of a derived class.</li>
+</ol>
+<p>For example, in the following program bp is a pointer of type Base, but a call to bp-&gt;show() calls show() function of Derived class, because bp points to an object of Derived class.</p>
+<p>C++</p>
+<p>#include<iostream>
+using namespace std;</p>
+<p>class Base {
+public:
+virtual void show() { cout&lt;&lt;&quot; In Base \n&quot;; }
+};</p>
+<p>class Derived: public Base {
+public:
+void show() { cout&lt;&lt;&quot;In Derived \n&quot;; } 
+};</p>
+<p>int main(void) {<br />
+Base *bp = new Derived;<br />
+bp-&gt;show();  // RUN-TIME POLYMORPHISM
+return 0;
+}</p>
+<p>Output: </p>
+<p>In Derived</p>
+<p>What is this pointer? 
+The ‘this’ pointer is passed as a hidden argument to all nonstatic member function calls and is available as a local variable within the body of all nonstatic functions. ‘this’ pointer is a constant pointer that holds the memory address of the current object. ‘this’ pointer is not available in static member functions as static member functions can be called without any object (with class name).</p>
+<p>Can we do &quot;delete this&quot;? 
+See https://www.geeksforgeeks.org/delete-this-in-c/</p>
+<p>What are VTABLE and VPTR? 
+the vtable is a table of function pointers. It is maintained per class. 
+vptr is a pointer to vtable. It is maintained per object (See this for an example). 
+The compiler adds additional code at two places to maintain and use vtable and vptr. </p>
+<ol>
+<li>Code in every constructor. This code sets vptr of the object being created. This code sets vptr to point to vtable of the class. </li>
+<li>Code with polymorphic function call (e.g. bp-&gt;show() in above code). Wherever a polymorphic call is made, the compiler inserts code to first look for vptr using a base class pointer or reference (In the above example, since the pointed or referred object is of the derived type, vptr of a derived class is accessed). Once vptr is fetched, vtable of derived class can be accessed. Using vtable, the address of the derived class function show() is accessed and called.</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-linux"><a class="header" href="#introduction-to-linux">Introduction to Linux</a></h1>
 <h2 id="what-is-operating-system-"><a class="header" href="#what-is-operating-system-">What is Operating System ?</a></h2>
 <p>An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs.</p>
