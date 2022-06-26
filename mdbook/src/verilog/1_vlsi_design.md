@@ -1,4 +1,3 @@
-
 ## ASIC Design Flow
 
 ![asic_design_flow](./images/asic_design_flow.png)
@@ -12,6 +11,7 @@
 - Digital and Analog(only simulation) design language 
 
 ## Abstraction Level
+
 - Circuit Level
   - CMOS Circuit
 
@@ -28,5 +28,4 @@
   - Stimulus generation
   - No architecture
   - Design modelling
-
 

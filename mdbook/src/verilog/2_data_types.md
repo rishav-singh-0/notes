@@ -13,13 +13,14 @@
 
   - Strongest signal prevails
   - Useful for switch level modelling and not for RTL
-  - When two signals with opposite value and same
-strength combine, the resulting value is x
+  - When two signals with opposite value and same strength combine, the
+    resulting value is x
 
 By default every variable will have 'x' value.
 In case of tristate buffer it will have high impedance 'z'.
 
-Strength levels are used in switch level modeling using cmos for building the circuit and not used for rtl.
+Strength levels are used in switch level modeling using cmos for building the
+circuit and not used for rtl.
 
 ## Numbers
 
@@ -33,10 +34,11 @@ Strength levels are used in switch level modeling using cmos for building the ci
 
 - For example: `4'b0010`
 - `12'o43xz` will be expanded like: 
-  ```
+
+```
   4    3    x    z 
  100  011  xxx  zzz
-  ```
+```
 
 - Underscores improve readability
 eg. `32’h a_bc_2` is the same as `32’b 1010_1011_1100_0010`
