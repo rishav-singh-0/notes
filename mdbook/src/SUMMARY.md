@@ -1,14 +1,14 @@
 # Summary
 
-- [Microprocessors](microprocessors/Readme.md) 
+- [Notes](Readme.md) 
+
+- [8086 Microprocessor](microprocessors/Readme.md) 
 
   - [History](microprocessors/history.md)
-
-  - [8086 Microprocessor](microprocessors/Readme.md)
-      - [Architecture](microprocessors/architecture.md)
-      - [Addressing Modes](microprocessors/addressing-modes.md) 
-      - [Registers and Flags](microprocessors/registors-and-flags.md)
-      - [Memory Segmentation](microprocessors/memory-segmentation.md) 
+  - [Architecture](microprocessors/architecture.md)
+  - [Addressing Modes](microprocessors/addressing-modes.md) 
+  - [Registers and Flags](microprocessors/registors-and-flags.md)
+  - [Memory Segmentation](microprocessors/memory-segmentation.md) 
 
 - [Computer Architecture](./computer-architecture/Readme.md) 
   - [Introduction](./computer-architecture/1.intro.md)

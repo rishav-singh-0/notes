@@ -1,18 +1,3 @@
-# Introduction
-
-The addressing modes for this powerful family of microprocessors are described
-for the real, protected, and flat modes of operation. Real mode memory (DOS
-memory) exists at locations 00000H–FFFFFH, the first 1M byte of the memory
-system, and is present on all versions of the microprocessor. Protected mode
-memory (Windows memory) exists at any location in the entire protected memory
-system, but is available only to the 80286–Core2, not to the earlier 8086 or
-8088 microprocessors. Protected mode memory for the 80286 contains 16M bytes;
-for the 80386–Pentium, 4G bytes; and for the Pentium Pro through the Core2,
-either 4G or 64G bytes. With the 64-bit extensions enabled, the Pentium 4
-and Core2 address 1T byte of memory in a flat memory model. Windows Vista
-or Windows 64 is needed to operate the Pentium 4 or Core2 in 64-bit mode
-using the flat mode memory to access the entire 1T byte of memory.
-
 # 8086
 
 ![architecture_diagram](./images/8086_architecture-diagram.jpg)
