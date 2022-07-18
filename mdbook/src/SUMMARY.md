@@ -17,6 +17,9 @@
   - [Pipeline Hazards](./computer-architecture/4.pipeline-hazards.md)
   - [Compiler Techniques](./computer-architecture/6.compiler-techniques.md)
 
+- [Digital Electronics](./digital/Readme.md)
+  - [Basic Circuits](./digital/basic_circuits.md)
+
 - [Verilog](./verilog/1_vlsi_design.md)
   - [Vlsi Design](./verilog/1_vlsi_design.md)
   - [Data Types](./verilog/2_data_types.md)
