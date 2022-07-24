@@ -1876,6 +1876,11 @@ ROM</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="multiplexers"><a class="header" href="#multiplexers">Multiplexers</a></h1>
 <ul>
+<li>It is a combinational circuit which have many data inputs and single output
+depending on control or select inputs</li>
+<li>For N input lines, log n (base2) selection lines, or we can say that for 2^n
+input lines, n selection lines are required</li>
+<li>Logic like if, else if, else statements</li>
 <li>2x1 Mux</li>
 </ul>
 <pre><code>Y = S0'*D0 + S0*D1 
@@ -1883,6 +1888,17 @@ ROM</li>
 <table><thead><tr><th style="text-align: center">S0</th><th style="text-align: center">Y</th></tr></thead><tbody>
 <tr><td style="text-align: center">0</td><td style="text-align: center">D0</td></tr>
 <tr><td style="text-align: center">1</td><td style="text-align: center">D1</td></tr>
+</tbody></table>
+<ul>
+<li>4x1 Mux</li>
+</ul>
+<pre><code>Y = S1'*S0'*D0 + S1'*S0*D1 + S1*S0'*D2 + S1*S0*D3
+</code></pre>
+<table><thead><tr><th style="text-align: center">S1</th><th style="text-align: center">S0</th><th style="text-align: center">Y</th></tr></thead><tbody>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">D0</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">D1</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">D2</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">D3</td></tr>
 </tbody></table>
 <h1 id="demultiplexers"><a class="header" href="#demultiplexers">Demultiplexers</a></h1>
 <h1 id="decoder"><a class="header" href="#decoder">Decoder</a></h1>
