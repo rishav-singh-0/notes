@@ -32,6 +32,7 @@
 - [Interview Questions](./questions/Readme.md)
   - [C++](./questions/cpp.md)
   - [Linux](./questions/linux.md)
+  - [Digital Electronics](./questions/digital.md)
   - [Summer DSA Plan](./questions/summer-dsa-plan.md)
 
 
