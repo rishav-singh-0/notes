@@ -10,31 +10,46 @@
 - [x] Tabular Method
 - [x] Static and Dynamic Hazards
 
-## Number System
+## Combinational Circuits
 
-- [x] 2's Complement
-- [ ] BCD Arithmetic
+- [ ] Adders - half, full, look-ahead carry
+- [ ] 2's Complement, BCD Adders
+- [ ] Parity Generator/Checker
 - [ ] Magnitude Comperator
+
 - [ ] ALU
 - [ ] Unweighted Code
 - [ ] Error Detection and Correction
 
-# Basic Circuits
-
-- [ ] Multiplexer
-- [ ] Demultiplexer
 - [ ] Decoder
 - [ ] Encoder
-- [ ] Parity Generator/Checker
+- [ ] Multiplexer
+- [ ] Demultiplexer
 
 ## Flip Flops
 
-- [ ] SR Latch
-- [ ] Flip-Flops
-- [ ] Sequential Logic
+- [ ] Latch - SR, Gated, D
+- [ ] Flip-Flops - Edge triggered, SR, D, JK, T
+- [ ] Sync and Async Inputs
+- [ ] Master-Slave Flip-Flops
+- [ ] Conversion of Flip-Flops
+- [ ] Applications of Latch and Flip-Flops
+- [ ] Monostable Multivibrator
+- [ ] Astable Multivibrator
+- [ ] Crystal-controlled Clock Generator
+
+
+## Shift Registers
+
 - [ ] Register, Shift Register
 - [ ] Async Counter
 - [ ] Sync Counter
+
+## Sequential Machines
+
+- [ ] FSM
+- [ ] Mealy, Moore
+- [ ] Synthesis of synchronous sequential circuits
 
 ## Extras
 
