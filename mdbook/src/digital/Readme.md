@@ -2,13 +2,22 @@
 
 ## Introduction
 
-- [ ] TTL
-- [ ] CMOS Logic
+- [x] TTL
+- [x] CMOS Logic
 - [x] Basic Gates
-- [ ] Boolean Algebra
+- [x] Boolean Algebra
 - [x] Karnugh Map
-- [ ] Tabular Method
-- [ ] Static and Dynamic Hazards
+- [x] Tabular Method
+- [x] Static and Dynamic Hazards
+
+## Number System
+
+- [x] 2's Complement
+- [ ] BCD Arithmetic
+- [ ] Magnitude Comperator
+- [ ] ALU
+- [ ] Unweighted Code
+- [ ] Error Detection and Correction
 
 # Basic Circuits
 
@@ -17,15 +26,6 @@
 - [ ] Decoder
 - [ ] Encoder
 - [ ] Parity Generator/Checker
-
-## Number System
-
-- [ ] 2's Complement
-- [ ] BCD Arithmetic
-- [ ] Magnitude Comperator
-- [ ] ALU
-- [ ] Unweighted Code
-- [ ] Error Detection and Correction
 
 ## Flip Flops
 
