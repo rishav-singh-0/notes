@@ -12,32 +12,31 @@
 
 ## Combinational Circuits
 
-- [ ] Adders - half, full, look-ahead carry
-- [ ] 2's Complement, BCD Adders
-- [ ] Parity Generator/Checker
-- [ ] Magnitude Comperator
+- [x] Adders - half, full, look-ahead carry
+- [x] 2's Complement, BCD Adders
+- [x] Parity Generator/Checker
+- [x] Magnitude Comperator
 
 - [ ] ALU
-- [ ] Unweighted Code
-- [ ] Error Detection and Correction
+- [x] Unweighted Code
+- [x] Error Detection and Correction
 
-- [ ] Decoder
-- [ ] Encoder
-- [ ] Multiplexer
-- [ ] Demultiplexer
+- [x] Decoder
+- [x] Encoder
+- [x] Multiplexer
+- [x] Demultiplexer
 
 ## Flip Flops
 
-- [ ] Latch - SR, Gated, D
-- [ ] Flip-Flops - Edge triggered, SR, D, JK, T
-- [ ] Sync and Async Inputs
-- [ ] Master-Slave Flip-Flops
-- [ ] Conversion of Flip-Flops
-- [ ] Applications of Latch and Flip-Flops
+- [x] Latch - SR, Gated, D
+- [x] Flip-Flops - Edge triggered, SR, D, JK, T
+- [x] Async Inputs
+- [x] Master-Slave Flip-Flops
+- [x] Conversion of Flip-Flops
+- [x] Applications of Latch and Flip-Flops
 - [ ] Monostable Multivibrator
 - [ ] Astable Multivibrator
 - [ ] Crystal-controlled Clock Generator
-
 
 ## Shift Registers
 
