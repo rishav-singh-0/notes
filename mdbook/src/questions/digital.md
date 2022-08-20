@@ -53,7 +53,10 @@
 
 ###Sync and Async Reset
 
-###Problems related to sync and async resets
+###Problems related to async resets
+- In async reset the glitch in reset signal directly effects the output(cause
+  it does not care about clock)
+- Bad timing of async reset could happen
 
 ###Clock Freq of FPGA, why can't go beyond specified freq
 
