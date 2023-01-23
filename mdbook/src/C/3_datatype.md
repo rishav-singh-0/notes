@@ -1,9 +1,11 @@
 Date: 10th Jan 2023
 
 ## General Points
-- If no data type is given to a variable, the compiler automatically converts it to int data type.
+- If no data type is given to a variable, the compiler automatically converts
+  it to int data type.
 - Signed is the default modifier for char and int data types.
-- We can’t use any modifiers(signed or unsigned) in float data type. Only long modifier is allowed in double data types.
+- We can’t use any modifiers(signed or unsigned) in float data type. Only long
+  modifier is allowed in double data types.
 
 ## Boolean
 Unlike C++, where no header file is needed to use bool, a header file “stdbool.h” must be included to use bool in C. 
